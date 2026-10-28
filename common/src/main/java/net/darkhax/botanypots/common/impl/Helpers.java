@@ -1,5 +1,7 @@
 package net.darkhax.botanypots.common.impl;
 
+import com.mojang.serialization.JsonOps;
+import com.google.gson.JsonObject;
 import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -62,7 +64,30 @@ public class Helpers {
     public static final Codec<EntityType<?>> ENTITY_TYPE_CODEC = Identifier.CODEC.xmap(BuiltInRegistries.ENTITY_TYPE::getValue, BuiltInRegistries.ENTITY_TYPE::getKey);
     public static final StreamCodec<ByteBuf, EntityType<?>> ENTITY_TYPE_STREAM = Identifier.STREAM_CODEC.map(BuiltInRegistries.ENTITY_TYPE::getValue, BuiltInRegistries.ENTITY_TYPE::getKey);
     public static final StreamCodec<ByteBuf, BlockState> BLOCK_STATE_STREAM = ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY);
-    public static final StreamCodec<RegistryFriendlyByteBuf, Optional<Ingredient>> OPTIONAL_INGREDIENT_STREAM = DataHelper.optionalStream(StreamCodecs.INGREDIENT_NON_EMPTY);
+    /**
+     * An ingredient that never matches. Bookshelf provides FalseIngredient.INSTANCE, but it only carries the Fabric
+     * type key and fails to decode on NeoForge. This version carries the type key for both loaders.
+     */
+    public static final Supplier<Ingredient> FALSE_INGREDIENT = CachedSupplier.cache(() -> {
+        final JsonObject obj = new JsonObject();
+        obj.addProperty("neoforge:ingredient_type", "bookshelf:false");
+        obj.addProperty("fabric:type", "bookshelf:false");
+        obj.addProperty("tag", "bookshelf:false");
+        return Ingredient.CODEC.decode(JsonOps.INSTANCE, obj).getOrThrow().getFirst();
+    });
+
+    /**
+     * Syncs ingredients that must not be empty. Ingredients that resolve to no items on the server, for example tags
+     * of mods that are not installed, are replaced with an ingredient that never matches.
+     */
+    public static final StreamCodec<RegistryFriendlyByteBuf, Ingredient> INGREDIENT_NON_EMPTY = StreamCodec.of(
+            Ingredient.CONTENTS_STREAM_CODEC,
+            buf -> {
+                final Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
+                return ingredient.isEmpty() ? FALSE_INGREDIENT.get() : ingredient;
+            }
+    );
+    public static final StreamCodec<RegistryFriendlyByteBuf, Optional<Ingredient>> OPTIONAL_INGREDIENT_STREAM = DataHelper.optionalStream(INGREDIENT_NON_EMPTY);
     public static final StreamCodec<RegistryFriendlyByteBuf, Optional<ItemStackTemplate>> OPTIONAL_ITEMSTACK_TEMPLATE_STREAM = DataHelper.optionalStream(ItemStackTemplate.STREAM_CODEC);
     public static final StreamCodec<RegistryFriendlyByteBuf, Optional<ItemStack>> OPTIONAL_ITEMSTACK_STREAM = DataHelper.optionalStream(ItemStack.STREAM_CODEC);
     public static final StreamCodec<RegistryFriendlyByteBuf, Optional<BlockPredicate>> OPTIONAL_BLOCK_PREDICATE = DataHelper.optionalStream(BlockPredicate.STREAM_CODEC);

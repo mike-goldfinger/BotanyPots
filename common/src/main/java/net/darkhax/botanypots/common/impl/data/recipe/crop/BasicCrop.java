@@ -208,8 +208,8 @@ public class BasicCrop extends Crop implements CacheableRecipe {
             @NotNull
             @Override
             public Properties decode(@NotNull RegistryFriendlyByteBuf buf) {
-                final Ingredient input = StreamCodecs.INGREDIENT_NON_EMPTY.decode(buf);
-                final Ingredient soil = StreamCodecs.INGREDIENT_NON_EMPTY.decode(buf);
+                final Ingredient input = Helpers.INGREDIENT_NON_EMPTY.decode(buf);
+                final Ingredient soil = Helpers.INGREDIENT_NON_EMPTY.decode(buf);
                 final int growTime = ByteBufCodecs.INT.decode(buf);
                 final List<Display> display = buf.readList(DisplayType.DISPLAY_STATE_STREAM);
                 final int light = ByteBufCodecs.INT.decode(buf);
@@ -228,8 +228,8 @@ public class BasicCrop extends Crop implements CacheableRecipe {
 
             @Override
             public void encode(@NotNull RegistryFriendlyByteBuf buf, @NotNull Properties properties) {
-                StreamCodecs.INGREDIENT_NON_EMPTY.encode(buf, properties.input);
-                StreamCodecs.INGREDIENT_NON_EMPTY.encode(buf, properties.soil);
+                Helpers.INGREDIENT_NON_EMPTY.encode(buf, properties.input);
+                Helpers.INGREDIENT_NON_EMPTY.encode(buf, properties.soil);
                 ByteBufCodecs.INT.encode(buf, properties.growTime);
                 buf.writeCollection(properties.display, DisplayType.DISPLAY_STATE_STREAM);
                 ByteBufCodecs.INT.encode(buf, properties.lightLevel);

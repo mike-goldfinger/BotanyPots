@@ -129,7 +129,7 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
             @NotNull
             @Override
             public Properties decode(@NotNull RegistryFriendlyByteBuf buf) {
-                final Ingredient ingredient = StreamCodecs.INGREDIENT_NON_EMPTY.decode(buf);
+                final Ingredient ingredient = Helpers.INGREDIENT_NON_EMPTY.decode(buf);
                 final boolean damageHeld = buf.readBoolean();
                 final boolean consumeHeld = buf.readBoolean();
                 final Optional<Ingredient> soilTest = Helpers.OPTIONAL_INGREDIENT_STREAM.decode(buf);
@@ -144,7 +144,7 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
 
             @Override
             public void encode(@NotNull RegistryFriendlyByteBuf buf, @NotNull Properties properties) {
-                StreamCodecs.INGREDIENT_NON_EMPTY.encode(buf, properties.heldTest);
+                Helpers.INGREDIENT_NON_EMPTY.encode(buf, properties.heldTest);
                 buf.writeBoolean(properties.damageHeld);
                 buf.writeBoolean(properties.consumeHeld);
                 Helpers.OPTIONAL_INGREDIENT_STREAM.encode(buf, properties.soilTest);

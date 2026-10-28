@@ -111,7 +111,7 @@ public class BasicFertilizer extends Fertilizer implements CacheableRecipe {
             @NotNull
             @Override
             public Properties decode(@NotNull RegistryFriendlyByteBuf buf) {
-                final Ingredient heldItem = StreamCodecs.INGREDIENT_NON_EMPTY.decode(buf);
+                final Ingredient heldItem = Helpers.INGREDIENT_NON_EMPTY.decode(buf);
                 final Optional<Ingredient> soil = Helpers.OPTIONAL_INGREDIENT_STREAM.decode(buf);
                 final Optional<Ingredient> seed = Helpers.OPTIONAL_INGREDIENT_STREAM.decode(buf);
                 final GrowthAmount growth = GrowthAmountType.GROWTH_AMOUNT_STREAM.decode(buf);
@@ -124,7 +124,7 @@ public class BasicFertilizer extends Fertilizer implements CacheableRecipe {
 
             @Override
             public void encode(@NotNull RegistryFriendlyByteBuf buf, @NotNull Properties properties) {
-                StreamCodecs.INGREDIENT_NON_EMPTY.encode(buf, properties.heldItem);
+                Helpers.INGREDIENT_NON_EMPTY.encode(buf, properties.heldItem);
                 Helpers.OPTIONAL_INGREDIENT_STREAM.encode(buf, properties.soilIngredient);
                 Helpers.OPTIONAL_INGREDIENT_STREAM.encode(buf, properties.seedIngredient);
                 GrowthAmountType.GROWTH_AMOUNT_STREAM.encode(buf, properties.growthAmount);

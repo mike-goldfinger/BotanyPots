@@ -4,6 +4,7 @@
   "package": "net.darkhax.botanypots.common.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "MixinFalseIngredient",
     "MixinMinecraftServer",
     "MixinRecipeManager"
   ],

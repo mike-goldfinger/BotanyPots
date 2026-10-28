@@ -105,7 +105,7 @@ public class BasicSoil extends Soil implements CacheableRecipe {
                 Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield_modifier", 0f).forGetter(Properties::yieldModifier)
         ).apply(instance, Properties::new));
         public static final StreamCodec<RegistryFriendlyByteBuf, Properties> STREAM = StreamCodec.composite(
-                StreamCodecs.INGREDIENT_NON_EMPTY, Properties::input,
+                Helpers.INGREDIENT_NON_EMPTY, Properties::input,
                 DisplayType.DISPLAY_STATE_STREAM, Properties::display,
                 ByteBufCodecs.FLOAT, Properties::growthModifier,
                 ByteBufCodecs.INT, Properties::lightLevel,
