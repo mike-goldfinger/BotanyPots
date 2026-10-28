@@ -37,8 +37,8 @@ public class BotanyPotMenu extends AbstractContainerMenu {
     public static final Identifier EMPTY_SLOT_SOIL = BotanyPotsMod.id("container/slot/soil");
     public static final Identifier EMPTY_SLOT_SEED = BotanyPotsMod.id("container/slot/seed");
     public static final Identifier EMPTY_SLOT_HOE = Identifier.withDefaultNamespace("container/slot/hoe");
-    public static final CachedSupplier<MenuType<BotanyPotMenu>> BASIC_MENU = CachedSupplier.cache(() -> BuiltInRegistries.MENU.get(BotanyPotsMod.id("basic_pot_menu"))).cast();
-    public static final CachedSupplier<MenuType<BotanyPotMenu>> HOPPER_MENU = CachedSupplier.cache(() -> BuiltInRegistries.MENU.get(BotanyPotsMod.id("hopper_pot_menu"))).cast();
+    public static final CachedSupplier<MenuType<BotanyPotMenu>> BASIC_MENU = CachedSupplier.cache(() -> BuiltInRegistries.MENU.getValue(BotanyPotsMod.id("basic_pot_menu"))).cast();
+    public static final CachedSupplier<MenuType<BotanyPotMenu>> HOPPER_MENU = CachedSupplier.cache(() -> BuiltInRegistries.MENU.getValue(BotanyPotsMod.id("hopper_pot_menu"))).cast();
     public static final TagKey<Item> HARVEST_ITEM = TagKey.create(Registries.ITEM, BotanyPotsMod.id("harvest_items"));
 
     public static BotanyPotMenu basicMenuClient(int containerId, Inventory playerInv) {
