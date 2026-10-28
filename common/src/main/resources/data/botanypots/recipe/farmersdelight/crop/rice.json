@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "farmersdelight:rice",
-  "input": {
-    "item": "farmersdelight:rice"
-  },
-  "soil": {
-    "tag": "botanypots:soil/water"
-  }
+  "input": "farmersdelight:rice",
+  "soil": "#botanypots:soil/water"
 }

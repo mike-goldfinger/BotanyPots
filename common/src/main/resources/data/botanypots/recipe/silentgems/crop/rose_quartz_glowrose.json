@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:rose_quartz_glowrose",
-  "input": {
-    "item": "silentgems:rose_quartz_glowrose"
-  }
+  "input": "silentgems:rose_quartz_glowrose"
 }

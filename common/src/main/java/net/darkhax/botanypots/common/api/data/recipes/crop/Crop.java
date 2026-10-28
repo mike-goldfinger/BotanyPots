@@ -1,15 +1,16 @@
 package net.darkhax.botanypots.common.api.data.recipes.crop;
 
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
-import net.darkhax.bookshelf.common.api.function.SidedReloadableCache;
+import net.darkhax.botanypots.common.api.function.SidedReloadableCache;
 import net.darkhax.botanypots.common.api.context.BotanyPotContext;
 import net.darkhax.botanypots.common.api.data.display.types.Display;
 import net.darkhax.botanypots.common.api.data.recipes.BotanyPotRecipe;
 import net.darkhax.botanypots.common.api.data.recipes.RecipeCache;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -27,7 +28,7 @@ import java.util.function.Supplier;
 public abstract class Crop extends BotanyPotRecipe {
 
     public static final Supplier<RecipeType<Crop>> TYPE = CachedSupplier.of(BuiltInRegistries.RECIPE_TYPE, BotanyPotsMod.id("crop")).cast();
-    public static final SidedReloadableCache<Map<ResourceLocation, RecipeHolder<Crop>>> RECIPES = SidedReloadableCache.recipes(TYPE);
+    public static final SidedReloadableCache<Map<Identifier, RecipeHolder<Crop>>> RECIPES = SidedReloadableCache.recipes(TYPE);
     public static final SidedReloadableCache<RecipeCache<Crop>> CACHE = RecipeCache.of(TYPE);
 
     /**
@@ -142,7 +143,7 @@ public abstract class Crop extends BotanyPotRecipe {
 
     @NotNull
     @Override
-    public RecipeType<?> getType() {
+    public RecipeType<? extends Recipe<BotanyPotContext>> getType() {
         return TYPE.get();
     }
 

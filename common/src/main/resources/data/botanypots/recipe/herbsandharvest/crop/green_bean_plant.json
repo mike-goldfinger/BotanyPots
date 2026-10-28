@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:green_bean_plant",
-  "input": {
-    "item": "herbsandharvest:green_bean_plant"
-  }
+  "input": "herbsandharvest:green_bean_plant"
 }

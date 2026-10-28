@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:aridgarden",
-  "input": {
-    "item": "pamhc2crops:aridgarden"
-  }
+  "input": "pamhc2crops:aridgarden"
 }

@@ -1,7 +1,5 @@
 {
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:lily_pad",
-  "soil": {
-    "tag": "botanypots:soil/water"
-  }
+  "soil": "#botanypots:soil/water"
 }

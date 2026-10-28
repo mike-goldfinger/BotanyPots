@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:flowering_jacaranda_bush",
-  "input": {
-    "item": "biomeswevegone:flowering_jacaranda_bush"
-  }
+  "input": "biomeswevegone:flowering_jacaranda_bush"
 }

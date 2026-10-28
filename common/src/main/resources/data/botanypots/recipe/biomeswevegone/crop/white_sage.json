@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:white_sage",
-  "input": {
-    "item": "biomeswevegone:white_sage"
-  }
+  "input": "biomeswevegone:white_sage"
 }

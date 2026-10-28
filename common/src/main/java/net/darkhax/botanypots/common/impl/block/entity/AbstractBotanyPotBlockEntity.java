@@ -11,9 +11,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.permissions.LevelBasedPermissionSet;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -88,7 +90,7 @@ public abstract class AbstractBotanyPotBlockEntity extends RandomizableContainer
         this.setItem(TOOL_SLOT, hoeStack);
     }
 
-    public void runFunction(ResourceLocation functionId) {
+    public void runFunction(Identifier functionId) {
         if (this.level instanceof ServerLevel serverLevel) {
             final Optional<CommandFunction<CommandSourceStack>> function = serverLevel.getServer().getFunctions().get(functionId);
             final CommandSourceStack sourceStack = this.createCommandSourceStack();
@@ -103,25 +105,25 @@ public abstract class AbstractBotanyPotBlockEntity extends RandomizableContainer
         if (this.level instanceof ServerLevel serverLevel) {
             final Direction direction = this.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING);
             final Component name = this.getName();
-            return new CommandSourceStack(CommandSource.NULL, Vec3.atCenterOf(this.worldPosition), new Vec2(0f, direction.toYRot()), serverLevel, 2, name.getString(), name, serverLevel.getServer(), null);
+            return new CommandSourceStack(CommandSource.NULL, Vec3.atCenterOf(this.worldPosition), new Vec2(0f, direction.toYRot()), serverLevel, LevelBasedPermissionSet.GAMEMASTER, name.getString(), name, serverLevel.getServer(), null);
         }
         return null;
     }
 
     @Override
-    public void loadAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
+    protected void loadAdditional(@NotNull ValueInput input) {
+        super.loadAdditional(input);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(tag)) {
-            ContainerHelper.loadAllItems(tag, this.items, registries);
+        if (!this.tryLoadLootTable(input)) {
+            ContainerHelper.loadAllItems(input, this.items);
         }
     }
 
     @Override
-    public void saveAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        if (!this.trySaveLootTable(tag)) {
-            ContainerHelper.saveAllItems(tag, this.items, registries);
+    protected void saveAdditional(@NotNull ValueOutput output) {
+        super.saveAdditional(output);
+        if (!this.trySaveLootTable(output)) {
+            ContainerHelper.saveAllItems(output, this.items);
         }
     }
 

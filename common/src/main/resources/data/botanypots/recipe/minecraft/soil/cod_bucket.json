@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:cod_bucket"
-  },
+  "input": "minecraft:cod_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

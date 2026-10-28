@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:orange_daisy",
-  "input": {
-    "item": "biomeswevegone:orange_daisy"
-  }
+  "input": "biomeswevegone:orange_daisy"
 }

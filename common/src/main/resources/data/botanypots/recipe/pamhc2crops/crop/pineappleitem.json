@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pampineapplecrop",
-  "input": {
-    "item": "pamhc2crops:pineappleitem"
-  }
+  "input": "pamhc2crops:pineappleitem"
 }

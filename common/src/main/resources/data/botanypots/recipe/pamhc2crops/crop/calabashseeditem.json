@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcalabashcrop",
-  "input": {
-    "item": "pamhc2crops:calabashseeditem"
-  }
+  "input": "pamhc2crops:calabashseeditem"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:barley_plant",
-  "input": {
-    "item": "herbsandharvest:barley_plant"
-  }
+  "input": "herbsandharvest:barley_plant"
 }

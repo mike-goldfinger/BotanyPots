@@ -9,12 +9,8 @@
     "category": "misc",
     "group": "botanypots:hopper_pot",
     "ingredients": [
-        {
-            "item": "minecraft:hopper"
-        },
-        {
-            "item": "botanypots:red_terracotta_botany_pot"
-        }
+        "minecraft:hopper",
+        "botanypots:red_terracotta_botany_pot"
     ],
     "result": {
         "id": "botanypots:red_terracotta_hopper_botany_pot",

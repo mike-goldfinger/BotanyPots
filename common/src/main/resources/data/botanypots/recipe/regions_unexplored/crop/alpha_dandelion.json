@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:alpha_dandelion",
-  "input": {
-    "item": "regions_unexplored:alpha_dandelion"
-  }
+  "input": "regions_unexplored:alpha_dandelion"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcantaloupecrop",
-  "input": {
-    "item": "pamhc2crops:cantaloupeitem"
-  }
+  "input": "pamhc2crops:cantaloupeitem"
 }

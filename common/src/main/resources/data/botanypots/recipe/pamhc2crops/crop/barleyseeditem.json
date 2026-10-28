@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pambarleycrop",
-  "input": {
-    "item": "pamhc2crops:barleyseeditem"
-  }
+  "input": "pamhc2crops:barleyseeditem"
 }

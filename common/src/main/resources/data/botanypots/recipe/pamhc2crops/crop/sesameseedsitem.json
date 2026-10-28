@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamsesameseedscrop",
-  "input": {
-    "item": "pamhc2crops:sesameseedsitem"
-  }
+  "input": "pamhc2crops:sesameseedsitem"
 }

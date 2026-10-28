@@ -2,12 +2,15 @@ package net.darkhax.botanypots.common.api.data.recipes;
 
 import com.mojang.serialization.Codec;
 import net.darkhax.botanypots.common.api.context.BotanyPotContext;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeBookCategories;
+import net.minecraft.world.item.crafting.RecipeBookCategory;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -33,19 +36,8 @@ public abstract class BotanyPotRecipe implements Recipe<BotanyPotContext> {
 
     @NotNull
     @Override
-    public ItemStack assemble(@NotNull BotanyPotContext input, @NotNull HolderLookup.Provider provider) {
+    public ItemStack assemble(@NotNull BotanyPotContext input) {
         return ItemStack.EMPTY;
-    }
-
-    @NotNull
-    @Override
-    public ItemStack getResultItem(HolderLookup.@NotNull Provider provider) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return true;
     }
 
     @Override
@@ -57,6 +49,32 @@ public abstract class BotanyPotRecipe implements Recipe<BotanyPotContext> {
     public boolean showNotification() {
         return false;
     }
+
+    @NotNull
+    @Override
+    public String group() {
+        return "";
+    }
+
+    @NotNull
+    @Override
+    public PlacementInfo placementInfo() {
+        return PlacementInfo.NOT_PLACEABLE;
+    }
+
+    @NotNull
+    @Override
+    public RecipeBookCategory recipeBookCategory() {
+        return RecipeBookCategories.CRAFTING_MISC;
+    }
+
+    @NotNull
+    @Override
+    public abstract RecipeSerializer<? extends Recipe<BotanyPotContext>> getSerializer();
+
+    @NotNull
+    @Override
+    public abstract RecipeType<? extends Recipe<BotanyPotContext>> getType();
 
     /**
      * Populates a tooltip when the item is hovered in a botany pot.
@@ -78,7 +96,7 @@ public abstract class BotanyPotRecipe implements Recipe<BotanyPotContext> {
      * @return A codec that serializes recipes of a given type.
      */
     public static <T extends Recipe<?>> Codec<T> recipeCodec(Supplier<RecipeType<T>> recipeType) {
-        return Codec.lazyInitialized(() -> Recipe.CODEC.xmap(recipe -> (T) recipe, Function.identity()));
+        return Codec.lazyInitialized(() -> Recipe.CODEC.xmap(recipe -> (T) recipe, recipe -> (Recipe<?>) recipe));
     }
 
     /**
@@ -89,6 +107,6 @@ public abstract class BotanyPotRecipe implements Recipe<BotanyPotContext> {
      * @return The type of the recipe.
      */
     public static <T extends Recipe<?>> StreamCodec<RegistryFriendlyByteBuf, T> recipeStream(Supplier<RecipeType<T>> recipeType) {
-        return StreamCodec.of(Recipe.STREAM_CODEC::encode, buf -> (T) Recipe.STREAM_CODEC.decode(buf));
+        return StreamCodec.of((buf, recipe) -> Recipe.STREAM_CODEC.encode(buf, recipe), buf -> (T) Recipe.STREAM_CODEC.decode(buf));
     }
 }

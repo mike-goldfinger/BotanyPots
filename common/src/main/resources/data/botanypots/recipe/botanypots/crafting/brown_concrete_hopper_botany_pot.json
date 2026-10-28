@@ -9,12 +9,8 @@
     "category": "misc",
     "group": "botanypots:hopper_pot",
     "ingredients": [
-        {
-            "item": "minecraft:hopper"
-        },
-        {
-            "item": "botanypots:brown_concrete_botany_pot"
-        }
+        "minecraft:hopper",
+        "botanypots:brown_concrete_botany_pot"
     ],
     "result": {
         "id": "botanypots:brown_concrete_hopper_botany_pot",

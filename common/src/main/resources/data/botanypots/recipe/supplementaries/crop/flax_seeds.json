@@ -9,17 +9,15 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "supplementaries:flax",
-  "input": {
-    "item": "supplementaries:flax_seeds"
-  },
+  "input": "supplementaries:flax_seeds",
   "display": [
     {
       "type": "botanypots:simple",
       "block_state": {
         "block": "supplementaries:flax",
         "properties": {
-            "age": "7",
-            "half": "lower"
+          "age": "7",
+          "half": "lower"
         }
       }
     },
@@ -28,8 +26,8 @@
       "block_state": {
         "block": "supplementaries:flax",
         "properties": {
-            "age": "7",
-            "half": "upper"
+          "age": "7",
+          "half": "upper"
         }
       }
     }

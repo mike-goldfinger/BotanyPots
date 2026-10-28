@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:firecracker_flower_bush",
-  "input": {
-    "item": "biomeswevegone:firecracker_flower_bush"
-  }
+  "input": "biomeswevegone:firecracker_flower_bush"
 }

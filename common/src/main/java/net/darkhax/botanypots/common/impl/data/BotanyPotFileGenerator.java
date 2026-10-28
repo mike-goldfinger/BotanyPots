@@ -1,6 +1,6 @@
 package net.darkhax.botanypots.common.impl.data;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,7 +18,7 @@ public class BotanyPotFileGenerator {
         this.ownerId = ownerId;
     }
 
-    public void potRecipes(ResourceLocation material) {
+    public void potRecipes(Identifier material) {
         final File craftingDir = setup(new File(outDir, "data/" + this.ownerId + "/recipe/" + this.ownerId + "/crafting"));
         basicPotRecipe(craftingDir, material);
         hopperPotRecipe(craftingDir, material);
@@ -26,14 +26,14 @@ public class BotanyPotFileGenerator {
         waxedPotRecipe(craftingDir, material);
     }
 
-    public void lootTables(ResourceLocation material) {
+    public void lootTables(Identifier material) {
         final File lootDir = setup(new File(outDir, "loot_table/blocks"));
-        lootTable(lootDir, ResourceLocation.fromNamespaceAndPath(this.ownerId, material.getPath() + "_botany_pot"));
-        lootTable(lootDir, ResourceLocation.fromNamespaceAndPath(this.ownerId, material.getPath() + "_hopper_botany_pot"));
-        lootTable(lootDir, ResourceLocation.fromNamespaceAndPath(this.ownerId, material.getPath() + "_waxed_botany_pot"));
+        lootTable(lootDir, Identifier.fromNamespaceAndPath(this.ownerId, material.getPath() + "_botany_pot"));
+        lootTable(lootDir, Identifier.fromNamespaceAndPath(this.ownerId, material.getPath() + "_hopper_botany_pot"));
+        lootTable(lootDir, Identifier.fromNamespaceAndPath(this.ownerId, material.getPath() + "_waxed_botany_pot"));
     }
 
-    public void models(ResourceLocation material) {
+    public void models(Identifier material) {
         final File modelDir = setup(new File(outDir, "assets/" + this.ownerId + "/models"));
         final File blockDir = setup(new File(modelDir, "block"));
         final File itemDir = setup(new File(modelDir, "item"));
@@ -52,27 +52,27 @@ public class BotanyPotFileGenerator {
         write(new File(stateDir, material.getPath() + "_waxed_botany_pot.json"), BLOCK_STATE_TEMPLATE.replace("$owner", this.ownerId).replace("$model_name", material.getPath() + "_botany_pot"));
     }
 
-    public void basicPotRecipe(File recipeDir, ResourceLocation material) {
+    public void basicPotRecipe(File recipeDir, Identifier material) {
         write(new File(recipeDir, material.getPath() + "_botany_pot.json"), format(BASIC_POT_RECIPE_TEMPLATE, material));
     }
 
-    public void hopperPotRecipe(File recipeDir, ResourceLocation material) {
+    public void hopperPotRecipe(File recipeDir, Identifier material) {
         write(new File(recipeDir, material.getPath() + "_hopper_botany_pot.json"), format(HOPPER_POT_RECIPE_TEMPLATE, material));
     }
 
-    public void quickHopperPotRecipe(File recipeDir, ResourceLocation material) {
+    public void quickHopperPotRecipe(File recipeDir, Identifier material) {
         write(new File(recipeDir, material.getPath() + "_hopper_botany_pot_quick.json"), format(QUICK_HOPPER_POT_RECIPE_TEMPLATE, material));
     }
 
-    public void waxedPotRecipe(File recipeDir, ResourceLocation material) {
+    public void waxedPotRecipe(File recipeDir, Identifier material) {
         write(new File(recipeDir, material.getPath() + "_waxed_botany_pot.json"), format(WAX_POT_RECIPE_TEMPLATE, material));
     }
 
-    public void lootTable(File lootDir, ResourceLocation blockId) {
+    public void lootTable(File lootDir, Identifier blockId) {
         write(new File(lootDir, blockId.getPath() + ".json"), DROP_SELF_TABLE.replace("$block_id", blockId.toString()));
     }
 
-    private String format(String template, ResourceLocation material) {
+    private String format(String template, Identifier material) {
         return template
                 .replace("$owner", this.ownerId)
                 .replace("$material_id", material.toString())

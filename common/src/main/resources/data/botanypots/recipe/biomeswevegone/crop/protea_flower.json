@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:protea_flower",
-  "input": {
-    "item": "biomeswevegone:protea_flower"
-  }
+  "input": "biomeswevegone:protea_flower"
 }

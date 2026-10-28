@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "twilightforest:clover_patch",
-  "input": {
-    "item": "twilightforest:clover_patch"
-  }
+  "input": "twilightforest:clover_patch"
 }

@@ -9,12 +9,8 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "deeperdarker:sculk_vines",
-  "soil": {
-    "tag": "botanypots:soil/sculk"
-  },
-  "input": {
-    "item": "deeperdarker:sculk_vines"
-  },
+  "soil": "#botanypots:soil/sculk",
+  "input": "deeperdarker:sculk_vines",
   "render_options": {
     "rotation": "X_180"
   }

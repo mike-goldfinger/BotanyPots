@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:blueberry_plant",
-  "input": {
-    "item": "herbsandharvest:blueberry_seeds"
-  }
+  "input": "herbsandharvest:blueberry_seeds"
 }

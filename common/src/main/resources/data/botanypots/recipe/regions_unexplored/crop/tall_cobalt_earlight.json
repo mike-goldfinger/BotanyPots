@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:tall_cobalt_earlight",
-  "input": {
-    "item": "regions_unexplored:tall_cobalt_earlight"
-  }
+  "input": "regions_unexplored:tall_cobalt_earlight"
 }

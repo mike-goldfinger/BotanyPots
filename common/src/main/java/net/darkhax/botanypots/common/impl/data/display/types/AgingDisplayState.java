@@ -10,7 +10,7 @@ import net.darkhax.botanypots.common.impl.Helpers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class AgingDisplayState extends PhasedDisplayState {
 
-    public static final ResourceLocation TYPE_ID = BotanyPotsMod.id("aging");
+    public static final Identifier TYPE_ID = BotanyPotsMod.id("aging");
     public static final CachedSupplier<DisplayType<AgingDisplayState>> TYPE = CachedSupplier.cache(() -> DisplayType.get(TYPE_ID));
     public static final MapCodec<AgingDisplayState> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(Helpers.BLOCK_CODEC.fieldOf("block").forGetter(AgingDisplayState::getBlock), BasicOptions.CODEC.optionalFieldOf("options", BasicOptions.ofDefault()).forGetter(AgingDisplayState::getRenderOptions)).apply(instance, AgingDisplayState::new));
     public static final StreamCodec<FriendlyByteBuf, AgingDisplayState> STREAM = StreamCodec.composite(Helpers.BLOCK_STREAM, AgingDisplayState::getBlock, BasicOptions.STREAM, AgingDisplayState::getRenderOptions, AgingDisplayState::new);

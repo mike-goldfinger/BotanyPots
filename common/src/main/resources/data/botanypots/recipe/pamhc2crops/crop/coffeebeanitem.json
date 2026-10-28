@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcoffeebeancrop",
-  "input": {
-    "item": "pamhc2crops:coffeebeanitem"
-  }
+  "input": "pamhc2crops:coffeebeanitem"
 }

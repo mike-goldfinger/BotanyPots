@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:beach_grass",
-  "input": {
-    "item": "biomeswevegone:beach_grass"
-  },
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  }
+  "input": "biomeswevegone:beach_grass",
+  "soil": "#botanypots:soil/sand"
 }

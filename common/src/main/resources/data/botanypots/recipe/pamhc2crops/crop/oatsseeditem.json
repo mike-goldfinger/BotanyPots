@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamoatscrop",
-  "input": {
-    "item": "pamhc2crops:oatsseeditem"
-  }
+  "input": "pamhc2crops:oatsseeditem"
 }

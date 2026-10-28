@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:incan_lily",
-  "input": {
-    "item": "biomeswevegone:incan_lily"
-  }
+  "input": "biomeswevegone:incan_lily"
 }

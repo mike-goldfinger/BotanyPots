@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "chipped:flowered_crimson_roots",
-  "input": {
-    "item": "chipped:flowered_crimson_roots"
-  }
+  "input": "chipped:flowered_crimson_roots"
 }

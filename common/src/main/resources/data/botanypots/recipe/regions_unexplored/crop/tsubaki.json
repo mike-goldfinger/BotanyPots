@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:tsubaki",
-  "input": {
-    "item": "regions_unexplored:tsubaki"
-  }
+  "input": "regions_unexplored:tsubaki"
 }

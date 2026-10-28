@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:pink_allium_flower_bush",
-  "input": {
-    "item": "biomeswevegone:pink_allium_flower_bush"
-  }
+  "input": "biomeswevegone:pink_allium_flower_bush"
 }

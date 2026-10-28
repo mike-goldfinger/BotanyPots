@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:dropleaf",
-  "input": {
-    "item": "regions_unexplored:dropleaf"
-  }
+  "input": "regions_unexplored:dropleaf"
 }

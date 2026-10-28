@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:cattail_sprout",
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
-  "input": {
-    "item": "biomeswevegone:cattail_sprout"
-  }
+  "soil": "#botanypots:soil/water",
+  "input": "biomeswevegone:cattail_sprout"
 }

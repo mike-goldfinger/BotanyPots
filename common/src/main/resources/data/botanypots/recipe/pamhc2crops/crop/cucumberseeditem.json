@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcucumbercrop",
-  "input": {
-    "item": "pamhc2crops:cucumberseeditem"
-  }
+  "input": "pamhc2crops:cucumberseeditem"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:tall_allium",
-  "input": {
-    "item": "biomeswevegone:tall_allium"
-  }
+  "input": "biomeswevegone:tall_allium"
 }

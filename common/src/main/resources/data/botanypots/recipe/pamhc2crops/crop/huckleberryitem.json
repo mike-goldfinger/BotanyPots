@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamhuckleberrycrop",
-  "input": {
-    "item": "pamhc2crops:huckleberryitem"
-  }
+  "input": "pamhc2crops:huckleberryitem"
 }

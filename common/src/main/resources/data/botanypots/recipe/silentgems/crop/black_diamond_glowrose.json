@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:black_diamond_glowrose",
-  "input": {
-    "item": "silentgems:black_diamond_glowrose"
-  }
+  "input": "silentgems:black_diamond_glowrose"
 }

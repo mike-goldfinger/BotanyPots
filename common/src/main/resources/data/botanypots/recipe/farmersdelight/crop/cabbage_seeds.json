@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "farmersdelight:cabbages",
-  "input": {
-    "item": "farmersdelight:cabbage_seeds"
-  }
+  "input": "farmersdelight:cabbage_seeds"
 }

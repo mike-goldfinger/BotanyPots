@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamyuccacrop",
-  "input": {
-    "item": "pamhc2crops:yuccaseeditem"
-  }
+  "input": "pamhc2crops:yuccaseeditem"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:sapphire_glowrose",
-  "input": {
-    "item": "silentgems:sapphire_glowrose"
-  }
+  "input": "silentgems:sapphire_glowrose"
 }

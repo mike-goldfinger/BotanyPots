@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:stone_bud",
-  "input": {
-    "item": "regions_unexplored:stone_bud"
-  }
+  "input": "regions_unexplored:stone_bud"
 }

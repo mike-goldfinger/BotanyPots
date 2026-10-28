@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "occultism:otherflower",
-  "input": {
-    "item": "occultism:otherflower"
-  }
+  "input": "occultism:otherflower"
 }

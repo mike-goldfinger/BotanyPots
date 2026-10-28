@@ -1,9 +1,7 @@
 {
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:glow_lichen",
-  "soil": {
-    "tag": "botanypots:soil/moss"
-  },
+  "soil": "#botanypots:soil/moss",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:cave_hyssop",
-  "input": {
-    "item": "regions_unexplored:cave_hyssop"
-  }
+  "input": "regions_unexplored:cave_hyssop"
 }

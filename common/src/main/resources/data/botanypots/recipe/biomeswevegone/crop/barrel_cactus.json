@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:barrel_cactus",
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  },
-  "input": {
-    "item": "biomeswevegone:barrel_cactus"
-  }
+  "soil": "#botanypots:soil/sand",
+  "input": "biomeswevegone:barrel_cactus"
 }

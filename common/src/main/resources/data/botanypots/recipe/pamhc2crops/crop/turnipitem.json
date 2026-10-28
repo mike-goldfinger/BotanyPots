@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamturnipcrop",
-  "input": {
-    "item": "pamhc2crops:turnipitem"
-  }
+  "input": "pamhc2crops:turnipitem"
 }

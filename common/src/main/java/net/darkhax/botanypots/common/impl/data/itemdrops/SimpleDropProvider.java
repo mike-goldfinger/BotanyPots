@@ -13,6 +13,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.Level;
 
 import java.util.LinkedList;
@@ -59,14 +60,19 @@ public record SimpleDropProvider(List<SimpleDrop> drops) implements ItemDropProv
 
     @Override
     public List<ItemStack> getDisplayItems() {
-        return this.drops.stream().map(d -> d.drop).collect(Collectors.toList());
+        return this.drops.stream().map(SimpleDrop::drop).collect(Collectors.toList());
     }
 
-    public record SimpleDrop(ItemStack drop, float chance) {
+    public record SimpleDrop(ItemStackTemplate result, float chance) {
+
+        public ItemStack drop() {
+            return this.result.create();
+        }
+
         public static final MapCodec<SimpleDrop> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                ItemStack.CODEC.fieldOf("result").forGetter(SimpleDrop::drop),
+                ItemStackTemplate.CODEC.fieldOf("result").forGetter(SimpleDrop::result),
                 Codec.floatRange(0f, 1f).optionalFieldOf("chance", 1f).forGetter(SimpleDrop::chance)
         ).apply(instance, SimpleDrop::new));
-        public static final StreamCodec<RegistryFriendlyByteBuf, SimpleDrop> STREAM = StreamCodec.composite(ItemStack.STREAM_CODEC, SimpleDrop::drop, ByteBufCodecs.FLOAT, SimpleDrop::chance, SimpleDrop::new);
+        public static final StreamCodec<RegistryFriendlyByteBuf, SimpleDrop> STREAM = StreamCodec.composite(ItemStackTemplate.STREAM_CODEC, SimpleDrop::result, ByteBufCodecs.FLOAT, SimpleDrop::chance, SimpleDrop::new);
     }
 }

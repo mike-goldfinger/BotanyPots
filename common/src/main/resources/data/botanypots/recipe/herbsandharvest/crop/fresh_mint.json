@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:mint_placeable_herb",
-  "input": {
-    "item": "herbsandharvest:fresh_mint"
-  }
+  "input": "herbsandharvest:fresh_mint"
 }

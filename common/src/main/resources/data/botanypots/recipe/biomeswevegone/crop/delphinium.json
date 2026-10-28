@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:delphinium",
-  "input": {
-    "item": "biomeswevegone:delphinium"
-  }
+  "input": "biomeswevegone:delphinium"
 }

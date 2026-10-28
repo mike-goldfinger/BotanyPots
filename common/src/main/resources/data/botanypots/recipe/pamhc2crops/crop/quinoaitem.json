@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamquinoacrop",
-  "input": {
-    "item": "pamhc2crops:quinoaitem"
-  }
+  "input": "pamhc2crops:quinoaitem"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:japanese_orchid",
-  "input": {
-    "item": "biomeswevegone:japanese_orchid"
-  }
+  "input": "biomeswevegone:japanese_orchid"
 }

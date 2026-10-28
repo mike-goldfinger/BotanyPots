@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcottoncrop",
-  "input": {
-    "item": "pamhc2crops:cottonitem"
-  }
+  "input": "pamhc2crops:cottonitem"
 }

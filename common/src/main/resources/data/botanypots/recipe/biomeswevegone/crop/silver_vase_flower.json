@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:silver_vase_flower",
-  "input": {
-    "item": "biomeswevegone:silver_vase_flower"
-  }
+  "input": "biomeswevegone:silver_vase_flower"
 }

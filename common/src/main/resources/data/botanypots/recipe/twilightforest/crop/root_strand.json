@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "twilightforest:root_strand",
-  "input": {
-    "item": "twilightforest:root_strand"
-  }
+  "input": "twilightforest:root_strand"
 }

@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:tiny_lily_pads",
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
-  "input": {
-    "item": "biomeswevegone:tiny_lily_pads"
-  }
+  "soil": "#botanypots:soil/water",
+  "input": "biomeswevegone:tiny_lily_pads"
 }

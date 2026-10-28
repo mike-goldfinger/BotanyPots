@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamstrawberrycrop",
-  "input": {
-    "item": "pamhc2crops:strawberryseeditem"
-  }
+  "input": "pamhc2crops:strawberryseeditem"
 }

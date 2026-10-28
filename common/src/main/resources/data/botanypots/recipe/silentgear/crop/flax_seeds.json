@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgear:flax_plant",
-  "input": {
-    "item": "silentgear:flax_seeds"
-  }
+  "input": "silentgear:flax_seeds"
 }

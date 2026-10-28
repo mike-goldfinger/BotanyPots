@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:fairy_slipper",
-  "input": {
-    "item": "biomeswevegone:fairy_slipper"
-  }
+  "input": "biomeswevegone:fairy_slipper"
 }

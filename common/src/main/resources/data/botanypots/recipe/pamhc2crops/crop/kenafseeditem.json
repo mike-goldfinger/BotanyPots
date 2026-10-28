@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamkenafcrop",
-  "input": {
-    "item": "pamhc2crops:kenafseeditem"
-  }
+  "input": "pamhc2crops:kenafseeditem"
 }

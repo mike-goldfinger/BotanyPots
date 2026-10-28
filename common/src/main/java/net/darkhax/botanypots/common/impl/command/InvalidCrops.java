@@ -114,7 +114,7 @@ public class InvalidCrops {
 
     private static ItemStack withSilkTouch(Item item, RegistryAccess registries) {
         final ItemStack stack = item.getDefaultInstance();
-        stack.enchant(registries.registryOrThrow(Registries.ENCHANTMENT).getHolder(Enchantments.SILK_TOUCH).orElseThrow(), 1);
+        stack.enchant(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH), 1);
         return stack;
     }
 }

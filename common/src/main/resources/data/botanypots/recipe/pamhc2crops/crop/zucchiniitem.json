@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamzucchinicrop",
-  "input": {
-    "item": "pamhc2crops:zucchiniitem"
-  }
+  "input": "pamhc2crops:zucchiniitem"
 }

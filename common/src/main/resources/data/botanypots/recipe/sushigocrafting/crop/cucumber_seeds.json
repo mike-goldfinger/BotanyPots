@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "sushigocrafting:cucumber_crop",
-  "input": {
-    "item": "sushigocrafting:cucumber_seeds"
-  }
+  "input": "sushigocrafting:cucumber_seeds"
 }

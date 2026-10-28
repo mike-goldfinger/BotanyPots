@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamrhubarbcrop",
-  "input": {
-    "item": "pamhc2crops:rhubarbitem"
-  }
+  "input": "pamhc2crops:rhubarbitem"
 }

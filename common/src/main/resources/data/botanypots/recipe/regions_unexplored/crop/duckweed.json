@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:duckweed",
-  "input": {
-    "item": "regions_unexplored:duckweed"
-  }
+  "input": "regions_unexplored:duckweed"
 }

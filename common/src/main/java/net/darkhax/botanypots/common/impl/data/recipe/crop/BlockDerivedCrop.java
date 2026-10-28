@@ -15,13 +15,14 @@ import net.darkhax.botanypots.common.impl.data.display.types.AgingDisplayState;
 import net.darkhax.botanypots.common.impl.data.display.types.BasicOptions;
 import net.darkhax.botanypots.common.impl.data.display.types.SimpleDisplayState;
 import net.darkhax.botanypots.common.impl.data.itemdrops.BlockStateDrops;
-import net.darkhax.botanypots.common.mixin.AccessorIntegerProperty;
-import net.minecraft.advancements.critereon.BlockPredicate;
+import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -41,6 +42,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,21 +63,22 @@ public class BlockDerivedCrop extends BasicCrop {
         return this.properties;
     }
 
-    public record Properties(Block block, Optional<Ingredient> seed, Ingredient soil, int growTime, Optional<List<Display>> display, int lightLevel, Optional<List<ItemDropProvider>> drops, Optional<BasicOptions> renderOptions, Optional<ResourceLocation> functionId, Optional<BlockPredicate> potPredicate, float baseYield, float yieldScale) {
+    public record Properties(Block block, Optional<Ingredient> seed, Ingredient soil, int growTime, Optional<List<Display>> display, int lightLevel, Optional<List<ItemDropProvider>> drops, Optional<BasicOptions> renderOptions, Optional<Identifier> functionId, Optional<BlockPredicate> potPredicate, float baseYield, float yieldScale) {
         public static final MapCodec<Properties> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter(Properties::block),
                 Ingredient.CODEC.optionalFieldOf("input").forGetter(Properties::seed),
-                Ingredient.CODEC.optionalFieldOf("soil", BasicCrop.DIRT).forGetter(Properties::soil),
+                Ingredient.CODEC.optionalFieldOf("soil").forGetter(p -> Optional.of(p.soil())),
                 Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("grow_time", 1200).forGetter(Properties::growTime),
                 DisplayType.LIST_CODEC.optionalFieldOf("display").forGetter(Properties::display),
                 Codec.intRange(0, 15).optionalFieldOf("light_level", 0).forGetter(Properties::lightLevel),
                 MapCodecs.flexibleList(ItemDropProviderType.DROP_PROVIDER_CODEC).optionalFieldOf("drops").forGetter(Properties::drops),
                 BasicOptions.CODEC.optionalFieldOf("render_options").forGetter(Properties::renderOptions),
-                ResourceLocation.CODEC.optionalFieldOf("function").forGetter(Properties::functionId),
+                Identifier.CODEC.optionalFieldOf("function").forGetter(Properties::functionId),
                 BlockPredicate.CODEC.optionalFieldOf("pot_predicate").forGetter(Properties::potPredicate),
                 Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield", 1f).forGetter(Properties::baseYield),
-                Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield_scale", 1f).forGetter(Properties::yieldScale)
-        ).apply(instance, Properties::new));
+                Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield_scale", 1f).forGetter(Properties::yieldScale),
+                RegistryOps.retrieveGetter(Registries.ITEM)
+        ).apply(instance, (block, seed, soil, growTime, display, lightLevel, drops, renderOptions, functionId, potPredicate, baseYield, yieldScale, items) -> new Properties(block, seed, soil.orElseGet(() -> BasicCrop.dirt(items)), growTime, display, lightLevel, drops, renderOptions, functionId, potPredicate, baseYield, yieldScale)));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, Properties> STREAM = new StreamCodec<>() {
             @NotNull
@@ -136,8 +139,8 @@ public class BlockDerivedCrop extends BasicCrop {
                 return cropBlock.getStateForAge(cropBlock.getMaxAge());
             }
             final Property<?> ageProp = block.getStateDefinition().getProperty("age");
-            if (ageProp instanceof IntegerProperty intProp && intProp instanceof AccessorIntegerProperty accessor) {
-                return block.defaultBlockState().setValue(intProp, accessor.botanypots$getMax());
+            if (ageProp instanceof IntegerProperty intProp) {
+                return block.defaultBlockState().setValue(intProp, Collections.max(intProp.getPossibleValues()));
             }
             return block.defaultBlockState();
         }

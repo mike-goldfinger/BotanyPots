@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:yellow_tulip",
-  "input": {
-    "item": "biomeswevegone:yellow_tulip"
-  }
+  "input": "biomeswevegone:yellow_tulip"
 }

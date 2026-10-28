@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:indigo_jacaranda_bush",
-  "input": {
-    "item": "biomeswevegone:indigo_jacaranda_bush"
-  }
+  "input": "biomeswevegone:indigo_jacaranda_bush"
 }

@@ -9,13 +9,9 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "reliquary:fertile_lily_pad",
-  "input": {
-    "item": "reliquary:fertile_lily_pad"
-  },
+  "input": "reliquary:fertile_lily_pad",
   "grow_time": 1000,
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
+  "soil": "#botanypots:soil/water",
   "drops": [
     {
       "type": "botanypots:loot_table",

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamchilipeppercrop",
-  "input": {
-    "item": "pamhc2crops:chilipepperseeditem"
-  }
+  "input": "pamhc2crops:chilipepperseeditem"
 }

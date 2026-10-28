@@ -9,21 +9,17 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "forbidden_arcanus:fungyss",
-  "input": {
-    "item": "forbidden_arcanus:fungyss"
-  },
+  "input": "forbidden_arcanus:fungyss",
   "soil": {
-    "type": "bookshelf:either",
+    "neoforge:ingredient_type": "bookshelf:either",
     "fabric:type": "bookshelf:either",
     "ingredients": [
       {
-        "type": "bookshelf:block_tag",
+        "neoforge:ingredient_type": "bookshelf:block_tag",
         "fabric:type": "bookshelf:block_tag",
         "tag": "minecraft:mushroom_grow_block"
       },
-      {
-        "tag": "botanypots:soil/mushroom"
-      }
+      "#botanypots:soil/mushroom"
     ]
   },
   "drops": [

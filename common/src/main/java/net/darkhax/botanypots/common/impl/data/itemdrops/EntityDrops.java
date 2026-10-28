@@ -3,7 +3,7 @@ package net.darkhax.botanypots.common.impl.data.itemdrops;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
-import net.darkhax.bookshelf.common.api.function.ReloadableCache;
+import net.darkhax.botanypots.common.api.function.ReloadableCache;
 import net.darkhax.bookshelf.common.api.loot.LootPoolEntryDescriptions;
 import net.darkhax.botanypots.common.api.context.BotanyPotContext;
 import net.darkhax.botanypots.common.api.data.itemdrops.ItemDropProvider;
@@ -13,26 +13,24 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.darkhax.botanypots.common.impl.Helpers;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -80,20 +78,22 @@ public class EntityDrops implements ItemDropProvider {
         this.damageType = damageType;
         this.entity = ReloadableCache.living(entityData);
         this.lootTableId = CachedSupplier.cache(() -> {
-            if (entityData.contains("DeathLootTable", Tag.TAG_STRING)) {
-                return ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.parse(entityData.getString("DeathLootTable")));
+            final Optional<String> deathTable = entityData.getString("DeathLootTable");
+            if (deathTable.isPresent()) {
+                return ResourceKey.create(Registries.LOOT_TABLE, Identifier.parse(deathTable.get()));
             }
-            else if (entityData.contains("id", Tag.TAG_STRING)) {
-                final ResourceLocation entityId = ResourceLocation.tryParse(entityData.getString("id"));
+            final Optional<String> entityIdString = entityData.getString("id");
+            if (entityIdString.isPresent()) {
+                final Identifier entityId = Identifier.tryParse(entityIdString.get());
                 if (entityId != null && BuiltInRegistries.ENTITY_TYPE.containsKey(entityId)) {
-                    return BuiltInRegistries.ENTITY_TYPE.get(entityId).getDefaultLootTable();
+                    return BuiltInRegistries.ENTITY_TYPE.getValue(entityId).getDefaultLootTable().orElse(Helpers.EMPTY_LOOT_TABLE);
                 }
             }
-            return BuiltInLootTables.EMPTY;
+            return Helpers.EMPTY_LOOT_TABLE;
         });
         this.displayItems = CachedSupplier.cache(() -> {
-            final LootTable table = Objects.requireNonNull(BotanyPotsMod.REGISTRY_ACCESS.get()).registryOrThrow(Registries.LOOT_TABLE).get(this.lootTableId.get());
-            return table != null ? LootPoolEntryDescriptions.getUniqueItems(Objects.requireNonNull(BotanyPotsMod.REGISTRY_ACCESS.get()), table) : List.of();
+            final LootTable table = BotanyPotsMod.server().reloadableRegistries().getLootTable(this.lootTableId.get());
+            return table != LootTable.EMPTY ? LootPoolEntryDescriptions.getUniqueItems(BotanyPotsMod.server(), table) : List.of();
         });
     }
 
@@ -118,8 +118,11 @@ public class EntityDrops implements ItemDropProvider {
     public void apply(BotanyPotContext context, Level level, Consumer<ItemStack> drops) {
         if (level instanceof ServerLevel serverLevel) {
             this.entity.ifPresent(level, living -> {
-                final ResourceKey<LootTable> resourcekey = living.getLootTable();
-                final LootTable loottable = serverLevel.getServer().reloadableRegistries().getLootTable(resourcekey);
+                final Optional<ResourceKey<LootTable>> resourcekey = living.getLootTable();
+                if (resourcekey.isEmpty()) {
+                    return;
+                }
+                final LootTable loottable = serverLevel.getServer().reloadableRegistries().getLootTable(resourcekey.get());
                 final LootParams.Builder paramBuilder = new LootParams.Builder(serverLevel);
                 paramBuilder.withParameter(LootContextParams.THIS_ENTITY, living);
                 paramBuilder.withParameter(LootContextParams.ORIGIN, living.position());

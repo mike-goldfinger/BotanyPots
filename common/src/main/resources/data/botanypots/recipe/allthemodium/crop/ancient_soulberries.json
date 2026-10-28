@@ -76,11 +76,7 @@
     ]
   },
   "input": [
-    {
-      "item": "allthemodium:ancient_soulberries"
-    },
-    {
-      "item": "allthemodium:ancient_cavevines_plant"
-    }
+    "allthemodium:ancient_soulberries",
+    "allthemodium:ancient_cavevines_plant"
   ]
 }

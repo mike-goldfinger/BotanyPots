@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:salmon_bucket"
-  },
+  "input": "minecraft:salmon_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

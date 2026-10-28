@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:yellow_lupine",
-  "input": {
-    "item": "regions_unexplored:yellow_lupine"
-  }
+  "input": "regions_unexplored:yellow_lupine"
 }

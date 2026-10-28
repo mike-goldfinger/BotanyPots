@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:mint_herb",
-  "input": {
-    "item": "herbsandharvest:mint_seeds"
-  }
+  "input": "herbsandharvest:mint_seeds"
 }

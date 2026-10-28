@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:violet_leather_flower",
-  "input": {
-    "item": "biomeswevegone:violet_leather_flower"
-  }
+  "input": "biomeswevegone:violet_leather_flower"
 }

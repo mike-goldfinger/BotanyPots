@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamlettucecrop",
-  "input": {
-    "item": "pamhc2crops:lettuceitem"
-  }
+  "input": "pamhc2crops:lettuceitem"
 }

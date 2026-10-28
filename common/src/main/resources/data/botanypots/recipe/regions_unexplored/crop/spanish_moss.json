@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:spanish_moss",
-  "input": {
-    "item": "regions_unexplored:spanish_moss"
-  }
+  "input": "regions_unexplored:spanish_moss"
 }

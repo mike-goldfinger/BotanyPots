@@ -12,9 +12,8 @@ import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -52,8 +51,8 @@ public class BotanyPotBlock extends BaseEntityBlock implements SimpleWaterlogged
 
     public final PotType type;
 
-    public BotanyPotBlock(MapColor color, PotType type) {
-        this(BlockBehaviour.Properties.of().mapColor(color).strength(1.25f, 4.2f).noOcclusion().lightLevel(LIGHT_LEVEL), type);
+    public static BlockBehaviour.Properties properties(BlockBehaviour.Properties properties, MapColor color) {
+        return properties.mapColor(color).strength(1.25f, 4.2f).noOcclusion().lightLevel(LIGHT_LEVEL);
     }
 
     public BotanyPotBlock(Properties properties, PotType type) {
@@ -100,7 +99,7 @@ public class BotanyPotBlock extends BaseEntityBlock implements SimpleWaterlogged
 
     @NotNull
     @Override
-    protected ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+    protected InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if (this.type != PotType.WAXED && level.getBlockEntity(pos) instanceof BotanyPotBlockEntity pot) {
             final BlockEntityContext context = new BlockEntityContext(pot, player, hand);
 
@@ -111,31 +110,28 @@ public class BotanyPotBlock extends BaseEntityBlock implements SimpleWaterlogged
                     pot.getOrInvalidateCrop().onHarvest(pot.getRecipeContext(), level, dropOutput -> Block.popResource(level, pos, dropOutput));
                     level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(pot.getBlockState()));
                 }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.SUCCESS;
             }
 
             // Fertilizer
             final RecipeHolder<Fertilizer> fertilizer = Fertilizer.getFertilizer(level, context, player.getItemInHand(hand));
             if (fertilizer != null && fertilizer.value().matches(context, level)) {
                 fertilizer.value().apply(context, level);
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.SUCCESS;
             }
 
             // Pot Interaction
             final RecipeHolder<PotInteraction> interaction = PotInteraction.getInteraction(level, context, player.getItemInHand(hand));
             if (interaction != null && interaction.value().matches(context, level)) {
                 interaction.value().apply(context);
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.SUCCESS;
             }
         }
         // Menu
-        if (level.isClientSide) {
-            return ItemInteractionResult.SUCCESS;
-        }
-        else {
+        if (!level.isClientSide()) {
             openMenu(state, level, pos, player);
-            return ItemInteractionResult.CONSUME;
         }
+        return InteractionResult.SUCCESS;
     }
 
     public void openMenu(BlockState state, Level level, BlockPos pos, Player player) {
@@ -176,9 +172,8 @@ public class BotanyPotBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
 
     @Override
-    public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
-        Containers.dropContentsOnDestroy(state, newState, level, pos);
-        super.onRemove(state, level, pos, newState, isMoving);
+    protected void affectNeighborsAfterRemoval(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, boolean movedByPiston) {
+        level.updateNeighbourForOutputSignal(pos, state.getBlock());
     }
 
     @NotNull
@@ -188,17 +183,17 @@ public class BotanyPotBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return state.getFluidState().isEmpty();
     }
 
     @Override
-    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
+    protected boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
     @Override
-    public int getAnalogOutputSignal(@NotNull BlockState state, Level world, @NotNull BlockPos pos) {
+    protected int getAnalogOutputSignal(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Direction direction) {
         return world.getBlockEntity(pos) instanceof BotanyPotBlockEntity pot ? pot.comparatorLevel : 0;
     }
 

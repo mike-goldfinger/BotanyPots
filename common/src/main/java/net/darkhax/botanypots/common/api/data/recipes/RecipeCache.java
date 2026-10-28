@@ -2,12 +2,12 @@ package net.darkhax.botanypots.common.api.data.recipes;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import net.darkhax.bookshelf.common.api.function.ReloadableCache;
-import net.darkhax.bookshelf.common.api.function.SidedReloadableCache;
+import net.darkhax.botanypots.common.api.function.ReloadableCache;
+import net.darkhax.botanypots.common.api.function.SidedReloadableCache;
 import net.darkhax.botanypots.common.api.context.BotanyPotContext;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 public final class RecipeCache<T extends BotanyPotRecipe> {
 
     private final Supplier<RecipeType<T>> recipeType;
-    private final ReloadableCache<Map<ResourceLocation, RecipeHolder<T>>> recipeCache;
+    private final ReloadableCache<Map<Identifier, RecipeHolder<T>>> recipeCache;
     private final Multimap<Item, RecipeHolder<T>> lookupCache = ArrayListMultimap.create();
     private final List<RecipeHolder<T>> uncached = new LinkedList<>();
 
@@ -86,7 +86,7 @@ public final class RecipeCache<T extends BotanyPotRecipe> {
 
     private void buildCache(Level level) {
         long startTime = System.nanoTime();
-        final Map<ResourceLocation, RecipeHolder<T>> recipes = recipeCache.apply(level);
+        final Map<Identifier, RecipeHolder<T>> recipes = recipeCache.apply(level);
         if (recipes == null) {
             BotanyPotsMod.LOG.error("Could not build {} cache. Entries do not exist?", this.recipeType.get());
             return;
@@ -105,7 +105,7 @@ public final class RecipeCache<T extends BotanyPotRecipe> {
             }
         }
         long endTime = System.nanoTime();
-        BotanyPotsMod.LOG.info("Built {} {} cache in {}ms. {} / {} entries cached.", level.isClientSide ? "Client" : "Server", this.recipeType.get(), (endTime - startTime) / 1_000_000f, recipes.size() - uncached.size(), recipes.size());
+        BotanyPotsMod.LOG.info("Built {} {} cache in {}ms. {} / {} entries cached.", level.isClientSide() ? "Client" : "Server", this.recipeType.get(), (endTime - startTime) / 1_000_000f, recipes.size() - uncached.size(), recipes.size());
     }
 
     /**

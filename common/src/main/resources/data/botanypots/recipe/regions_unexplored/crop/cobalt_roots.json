@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:cobalt_roots",
-  "input": {
-    "item": "regions_unexplored:cobalt_roots"
-  }
+  "input": "regions_unexplored:cobalt_roots"
 }

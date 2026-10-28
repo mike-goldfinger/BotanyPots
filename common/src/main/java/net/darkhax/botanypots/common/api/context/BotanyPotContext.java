@@ -2,7 +2,7 @@ package net.darkhax.botanypots.common.api.context;
 
 import net.darkhax.botanypots.common.api.data.recipes.crop.Crop;
 import net.darkhax.botanypots.common.api.data.recipes.soil.Soil;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -52,7 +52,7 @@ public interface BotanyPotContext extends RecipeInput {
      *
      * @param functionId The ID of the MCFunction to run.
      */
-    void runFunction(ResourceLocation functionId);
+    void runFunction(Identifier functionId);
 
     /**
      * Gets the relevant player if one is available.

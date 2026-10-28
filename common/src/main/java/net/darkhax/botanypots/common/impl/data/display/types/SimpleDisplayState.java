@@ -10,12 +10,12 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.Helpers;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SimpleDisplayState extends AbstractDisplay<BasicOptions> {
 
-    public static final ResourceLocation TYPE_ID = BotanyPotsMod.id("simple");
+    public static final Identifier TYPE_ID = BotanyPotsMod.id("simple");
     public static final CachedSupplier<DisplayType<SimpleDisplayState>> TYPE = CachedSupplier.cache(() -> DisplayType.get(TYPE_ID));
     public static final MapCodec<SimpleDisplayState> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             MapCodecs.BLOCK_STATE_MAP_CODEC.fieldOf("block_state").forGetter(SimpleDisplayState::getState),

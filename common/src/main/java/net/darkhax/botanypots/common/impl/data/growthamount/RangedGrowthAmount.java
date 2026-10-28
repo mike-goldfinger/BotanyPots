@@ -11,7 +11,7 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 public record RangedGrowthAmount(int min, int max) implements GrowthAmount {
 
-    public static final ResourceLocation ID = BotanyPotsMod.id("ranged");
+    public static final Identifier ID = BotanyPotsMod.id("ranged");
     public static final Supplier<GrowthAmountType<?>> TYPE = GrowthAmountType.getLazy(ID);
     public static final MapCodec<RangedGrowthAmount> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Codec.intRange(0, Integer.MAX_VALUE).fieldOf("min").forGetter(RangedGrowthAmount::min),
@@ -29,7 +29,7 @@ public record RangedGrowthAmount(int min, int max) implements GrowthAmount {
 
     @Override
     public int getAmount(@NotNull BotanyPotContext context, @NotNull Level level) {
-        return MathsHelper.nextInt(level.random, this.min, this.max);
+        return MathsHelper.nextInt(level.getRandom(), this.min, this.max);
     }
 
     @Override

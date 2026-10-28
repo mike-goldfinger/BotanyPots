@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamtomatillocrop",
-  "input": {
-    "item": "pamhc2crops:tomatilloitem"
-  }
+  "input": "pamhc2crops:tomatilloitem"
 }

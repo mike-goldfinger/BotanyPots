@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamwintersquashcrop",
-  "input": {
-    "item": "pamhc2crops:wintersquashseeditem"
-  }
+  "input": "pamhc2crops:wintersquashseeditem"
 }

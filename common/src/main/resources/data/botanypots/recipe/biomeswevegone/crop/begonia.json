@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:begonia",
-  "input": {
-    "item": "biomeswevegone:begonia"
-  }
+  "input": "biomeswevegone:begonia"
 }

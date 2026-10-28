@@ -10,13 +10,13 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.List;
 
 public class TransitionalDisplayState extends PhasedDisplayState {
 
-    public static final ResourceLocation TYPE_ID = BotanyPotsMod.id("transitional");
+    public static final Identifier TYPE_ID = BotanyPotsMod.id("transitional");
     public static final CachedSupplier<DisplayType<TransitionalDisplayState>> TYPE = CachedSupplier.cache(() -> DisplayType.get(TYPE_ID));
     public static final MapCodec<TransitionalDisplayState> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             MapCodecs.flexibleList(DisplayType.DISPLAY_STATE_CODEC).fieldOf("phases").forGetter(TransitionalDisplayState::getDisplayPhases)

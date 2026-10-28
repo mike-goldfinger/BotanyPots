@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pambroccolicrop",
-  "input": {
-    "item": "pamhc2crops:broccoliseeditem"
-  }
+  "input": "pamhc2crops:broccoliseeditem"
 }

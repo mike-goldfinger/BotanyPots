@@ -9,9 +9,7 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:steppe_tall_grass",
-  "input": {
-    "item": "regions_unexplored:steppe_tall_grass"
-  },
+  "input": "regions_unexplored:steppe_tall_grass",
   "drops": [
     {
       "type": "botanypots:loot_table",

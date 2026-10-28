@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:prickly_pear_cactus",
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  },
-  "input": {
-    "item": "biomeswevegone:prickly_pear_cactus"
-  }
+  "soil": "#botanypots:soil/sand",
+  "input": "biomeswevegone:prickly_pear_cactus"
 }

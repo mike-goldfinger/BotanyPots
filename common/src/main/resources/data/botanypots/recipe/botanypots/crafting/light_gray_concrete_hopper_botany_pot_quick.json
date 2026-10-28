@@ -8,17 +8,15 @@
     "type": "minecraft:crafting_shaped",
     "category": "misc",
     "group": "botanypots:quick_hopper_pot",
-    "pattern": ["MHM", "MPM", " M "],
+    "pattern": [
+        "MHM",
+        "MPM",
+        " M "
+    ],
     "key": {
-        "M": {
-            "item": "minecraft:light_gray_concrete"
-        },
-        "P": {
-            "item": "minecraft:flower_pot"
-        },
-        "H": {
-            "item": "minecraft:hopper"
-        }
+        "M": "minecraft:light_gray_concrete",
+        "P": "minecraft:flower_pot",
+        "H": "minecraft:hopper"
     },
     "result": {
         "id": "botanypots:light_gray_concrete_hopper_botany_pot",

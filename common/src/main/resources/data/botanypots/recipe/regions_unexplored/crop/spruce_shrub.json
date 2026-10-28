@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:spruce_shrub",
-  "input": {
-    "item": "regions_unexplored:spruce_shrub"
-  }
+  "input": "regions_unexplored:spruce_shrub"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "farmersdelight:tomatoes",
-  "input": {
-    "item": "farmersdelight:tomato_seeds"
-  }
+  "input": "farmersdelight:tomato_seeds"
 }

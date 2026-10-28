@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:purple_sage",
-  "input": {
-    "item": "biomeswevegone:purple_sage"
-  }
+  "input": "biomeswevegone:purple_sage"
 }

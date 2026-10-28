@@ -8,14 +8,14 @@
     "type": "minecraft:crafting_shaped",
     "category": "misc",
     "group": "botanypots:basic_pot",
-    "pattern": ["M M", "MPM", " M "],
+    "pattern": [
+        "M M",
+        "MPM",
+        " M "
+    ],
     "key": {
-        "M": {
-            "item": "minecraft:polished_blackstone_bricks"
-        },
-        "P": {
-            "item": "minecraft:flower_pot"
-        }
+        "M": "minecraft:polished_blackstone_bricks",
+        "P": "minecraft:flower_pot"
     },
     "result": {
         "id": "botanypots:polished_blackstone_bricks_botany_pot",

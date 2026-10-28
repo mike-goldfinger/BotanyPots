@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:horseweed",
-  "input": {
-    "item": "biomeswevegone:horseweed"
-  }
+  "input": "biomeswevegone:horseweed"
 }

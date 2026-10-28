@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:hydrangea_hedge",
-  "input": {
-    "item": "biomeswevegone:hydrangea_hedge"
-  }
+  "input": "biomeswevegone:hydrangea_hedge"
 }

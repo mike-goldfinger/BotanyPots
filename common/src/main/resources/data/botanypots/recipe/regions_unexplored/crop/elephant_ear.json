@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:elephant_ear",
-  "input": {
-    "item": "regions_unexplored:elephant_ear"
-  }
+  "input": "regions_unexplored:elephant_ear"
 }

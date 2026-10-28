@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:axolotl_bucket"
-  },
+  "input": "minecraft:axolotl_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

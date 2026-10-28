@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamsunchokecrop",
-  "input": {
-    "item": "pamhc2crops:sunchokeseeditem"
-  }
+  "input": "pamhc2crops:sunchokeseeditem"
 }

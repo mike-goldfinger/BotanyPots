@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "occultism:datura",
-  "input": {
-    "item": "occultism:datura_seeds"
-  }
+  "input": "occultism:datura_seeds"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:eggplant_plant",
-  "input": {
-    "item": "herbsandharvest:eggplant_plant"
-  }
+  "input": "herbsandharvest:eggplant_plant"
 }

@@ -13,7 +13,7 @@ import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -34,9 +34,9 @@ import java.util.Objects;
 
 public class BotanyPotMenu extends AbstractContainerMenu {
 
-    public static final ResourceLocation EMPTY_SLOT_SOIL = BotanyPotsMod.id("item/empty_slot_soil");
-    public static final ResourceLocation EMPTY_SLOT_SEED = BotanyPotsMod.id("item/empty_slot_seed");
-    public static final ResourceLocation EMPTY_SLOT_HOE = ResourceLocation.withDefaultNamespace("item/empty_slot_hoe");
+    public static final Identifier EMPTY_SLOT_SOIL = BotanyPotsMod.id("container/slot/soil");
+    public static final Identifier EMPTY_SLOT_SEED = BotanyPotsMod.id("container/slot/seed");
+    public static final Identifier EMPTY_SLOT_HOE = Identifier.withDefaultNamespace("container/slot/hoe");
     public static final CachedSupplier<MenuType<BotanyPotMenu>> BASIC_MENU = CachedSupplier.cache(() -> BuiltInRegistries.MENU.get(BotanyPotsMod.id("basic_pot_menu"))).cast();
     public static final CachedSupplier<MenuType<BotanyPotMenu>> HOPPER_MENU = CachedSupplier.cache(() -> BuiltInRegistries.MENU.get(BotanyPotsMod.id("hopper_pot_menu"))).cast();
     public static final TagKey<Item> HARVEST_ITEM = TagKey.create(Registries.ITEM, BotanyPotsMod.id("harvest_items"));

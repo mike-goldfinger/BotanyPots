@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:frozen_grass",
-  "input": {
-    "item": "regions_unexplored:frozen_grass"
-  }
+  "input": "regions_unexplored:frozen_grass"
 }

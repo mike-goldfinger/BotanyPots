@@ -8,7 +8,7 @@ import net.darkhax.bookshelf.common.api.function.CachedSupplier;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -24,24 +24,24 @@ import java.util.function.Supplier;
  * @param stream A stream codec that serializes the provider.
  * @param <T>    The type of the provider.
  */
-public record ItemDropProviderType<T extends ItemDropProvider>(ResourceLocation typeID, MapCodec<T> codec, StreamCodec<RegistryFriendlyByteBuf, T> stream) {
+public record ItemDropProviderType<T extends ItemDropProvider>(Identifier typeID, MapCodec<T> codec, StreamCodec<RegistryFriendlyByteBuf, T> stream) {
 
-    private static final Map<ResourceLocation, ItemDropProviderType<?>> REGISTRY = new HashMap<>();
-    public static final Codec<ItemDropProviderType<?>> TYPE_CODEC = ResourceLocation.CODEC.xmap(REGISTRY::get, ItemDropProviderType::typeID);
-    public static final StreamCodec<ByteBuf, ? extends ItemDropProviderType<?>> TYPE_STREAM = ResourceLocation.STREAM_CODEC.map(REGISTRY::get, ItemDropProviderType::typeID);
+    private static final Map<Identifier, ItemDropProviderType<?>> REGISTRY = new HashMap<>();
+    public static final Codec<ItemDropProviderType<?>> TYPE_CODEC = Identifier.CODEC.xmap(REGISTRY::get, ItemDropProviderType::typeID);
+    public static final StreamCodec<ByteBuf, ? extends ItemDropProviderType<?>> TYPE_STREAM = Identifier.STREAM_CODEC.map(REGISTRY::get, ItemDropProviderType::typeID);
     public static final Codec<ItemDropProvider> DROP_PROVIDER_CODEC = TYPE_CODEC.dispatch(ItemDropProvider::getType, ItemDropProviderType::codec);
     public static final StreamCodec<RegistryFriendlyByteBuf, ItemDropProvider> DROP_PROVIDER_STREAM = new StreamCodec<>() {
         @Override
         @SuppressWarnings({"unchecked", "rawtypes"})
         public void encode(@NotNull RegistryFriendlyByteBuf buf, @NotNull ItemDropProvider dropProvider) {
-            buf.writeResourceLocation(dropProvider.getType().typeID());
+            buf.writeIdentifier(dropProvider.getType().typeID());
             ((StreamCodec) dropProvider.getType().stream).encode(buf, dropProvider);
         }
 
         @NotNull
         @Override
         public ItemDropProvider decode(@NotNull RegistryFriendlyByteBuf buf) {
-            final ResourceLocation id = buf.readResourceLocation();
+            final Identifier id = buf.readIdentifier();
             if (!REGISTRY.containsKey(id)) {
                 BotanyPotsMod.LOG.error("Drop provider {} does not exist!", id);
                 throw new IllegalStateException("Drop provider " + id + " does not exist.");
@@ -51,11 +51,11 @@ public record ItemDropProviderType<T extends ItemDropProvider>(ResourceLocation 
     };
     public static final Codec<List<ItemDropProvider>> LIST_CODEC = MapCodecs.flexibleList(DROP_PROVIDER_CODEC);
 
-    public static Supplier<ItemDropProviderType<?>> getLazy(ResourceLocation id) {
+    public static Supplier<ItemDropProviderType<?>> getLazy(Identifier id) {
         return CachedSupplier.cache(() -> get(id));
     }
 
-    public static ItemDropProviderType<?> get(ResourceLocation id) {
+    public static ItemDropProviderType<?> get(Identifier id) {
         return REGISTRY.get(id);
     }
 
@@ -68,7 +68,7 @@ public record ItemDropProviderType<T extends ItemDropProvider>(ResourceLocation 
      * @param <T>    The provider represented by the type.
      * @return The newly created and registered type.
      */
-    public static <T extends ItemDropProvider> ItemDropProviderType<T> register(ResourceLocation id, MapCodec<T> codec, StreamCodec<RegistryFriendlyByteBuf, T> stream) {
+    public static <T extends ItemDropProvider> ItemDropProviderType<T> register(Identifier id, MapCodec<T> codec, StreamCodec<RegistryFriendlyByteBuf, T> stream) {
         final ItemDropProviderType<T> type = new ItemDropProviderType<>(id, codec, stream);
         if (REGISTRY.containsKey(id)) {
             BotanyPotsMod.LOG.warn("Item drop provider {} has already been assigned to {}. Replacing it with {}.", id, REGISTRY.get(id), type);

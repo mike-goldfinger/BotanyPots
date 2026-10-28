@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "chipped:stem_warped_roots",
-  "input": {
-    "item": "chipped:stem_warped_roots"
-  }
+  "input": "chipped:stem_warped_roots"
 }

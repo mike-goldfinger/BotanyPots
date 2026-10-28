@@ -1,10 +1,11 @@
 package net.darkhax.botanypots.common.impl.data.display.types;
 
+import net.darkhax.botanypots.common.impl.Helpers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
-import net.darkhax.bookshelf.common.api.function.ReloadableCache;
+import net.darkhax.botanypots.common.api.function.ReloadableCache;
 import net.darkhax.bookshelf.common.api.util.DataHelper;
 import net.darkhax.botanypots.common.api.data.display.types.Display;
 import net.darkhax.botanypots.common.api.data.display.types.DisplayType;
@@ -13,7 +14,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.Entity;
 import org.joml.Vector3f;
@@ -22,23 +23,23 @@ import java.util.Optional;
 
 public class EntityDisplayState implements Display {
 
-    public static final ResourceLocation TYPE_ID = BotanyPotsMod.id("entity");
+    public static final Identifier TYPE_ID = BotanyPotsMod.id("entity");
     public static final CachedSupplier<DisplayType<EntityDisplayState>> TYPE = CachedSupplier.cache(() -> DisplayType.get(TYPE_ID));
 
     public static final MapCodec<EntityDisplayState> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             CompoundTag.CODEC.fieldOf("entity").forGetter(EntityDisplayState::getEntityData),
             Codec.BOOL.optionalFieldOf("should_tick", true).forGetter(EntityDisplayState::shouldTickEntity),
             Codec.INT.optionalFieldOf("spin_speed", 0).forGetter(EntityDisplayState::getSpinSpeed),
-            ExtraCodecs.VECTOR3F.optionalFieldOf("scale", new Vector3f(0.5f, 0.5f, 0.5f)).forGetter(EntityDisplayState::getScale),
-            ExtraCodecs.VECTOR3F.optionalFieldOf("offset").forGetter(EntityDisplayState::getOffset)
+            Helpers.VECTOR3F_CODEC.optionalFieldOf("scale", new Vector3f(0.5f, 0.5f, 0.5f)).forGetter(EntityDisplayState::getScale),
+            Helpers.VECTOR3F_CODEC.optionalFieldOf("offset").forGetter(EntityDisplayState::getOffset)
     ).apply(instance, EntityDisplayState::new));
 
     public static final StreamCodec<FriendlyByteBuf, EntityDisplayState> STREAM = StreamCodec.composite(
             ByteBufCodecs.COMPOUND_TAG, EntityDisplayState::getEntityData,
             ByteBufCodecs.BOOL, EntityDisplayState::shouldTickEntity,
             ByteBufCodecs.INT, EntityDisplayState::getSpinSpeed,
-            ByteBufCodecs.VECTOR3F, EntityDisplayState::getScale,
-            DataHelper.optionalStream(ByteBufCodecs.VECTOR3F), EntityDisplayState::getOffset,
+            Helpers.VECTOR3F_STREAM, EntityDisplayState::getScale,
+            DataHelper.optionalStream(Helpers.VECTOR3F_STREAM), EntityDisplayState::getOffset,
             EntityDisplayState::new
     );
 

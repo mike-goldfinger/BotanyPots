@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamkalecrop",
-  "input": {
-    "item": "pamhc2crops:kaleseeditem"
-  }
+  "input": "pamhc2crops:kaleseeditem"
 }

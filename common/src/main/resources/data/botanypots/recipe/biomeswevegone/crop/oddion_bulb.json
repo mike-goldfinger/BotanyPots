@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:oddion_crop",
-  "input": {
-    "item": "biomeswevegone:oddion_bulb"
-  }
+  "input": "biomeswevegone:oddion_bulb"
 }

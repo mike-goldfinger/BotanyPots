@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "evilcraft:bucket_eternal_water"
-  },
+  "input": "evilcraft:bucket_eternal_water",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

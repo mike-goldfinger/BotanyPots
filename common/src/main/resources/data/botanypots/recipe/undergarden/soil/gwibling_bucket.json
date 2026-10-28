@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "undergarden:gwibling_bucket"
-  },
+  "input": "undergarden:gwibling_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:frostgarden",
-  "input": {
-    "item": "pamhc2crops:frostgarden"
-  }
+  "input": "pamhc2crops:frostgarden"
 }

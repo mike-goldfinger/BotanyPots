@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:glistering_bloom",
-  "input": {
-    "item": "regions_unexplored:glistering_bloom"
-  }
+  "input": "regions_unexplored:glistering_bloom"
 }

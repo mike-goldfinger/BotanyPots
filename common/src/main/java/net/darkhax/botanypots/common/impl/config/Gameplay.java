@@ -2,7 +2,7 @@ package net.darkhax.botanypots.common.impl.config;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
-import net.darkhax.bookshelf.common.api.function.ReloadableCache;
+import net.darkhax.botanypots.common.api.function.ReloadableCache;
 import net.darkhax.botanypots.common.api.command.generator.DataHelper;
 import net.darkhax.pricklemc.common.api.annotations.Value;
 import net.minecraft.resources.RegistryOps;

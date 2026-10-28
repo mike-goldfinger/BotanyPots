@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:purple_coneflower",
-  "input": {
-    "item": "regions_unexplored:purple_coneflower"
-  }
+  "input": "regions_unexplored:purple_coneflower"
 }

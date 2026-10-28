@@ -7,7 +7,7 @@ import net.darkhax.bookshelf.common.api.data.codecs.map.MapCodecs;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,17 +24,17 @@ import java.util.Map;
  * @param stream A stream codec that serializes the display.
  * @param <T>    The type of display.
  */
-public record DisplayType<T extends Display>(ResourceLocation typeId, MapCodec<T> codec, StreamCodec<FriendlyByteBuf, T> stream) {
+public record DisplayType<T extends Display>(Identifier typeId, MapCodec<T> codec, StreamCodec<FriendlyByteBuf, T> stream) {
 
-    private static final Map<ResourceLocation, DisplayType<? extends Display>> REGISTRY = new HashMap<>();
-    public static final Codec<DisplayType<?>> TYPE_CODEC = ResourceLocation.CODEC.xmap(REGISTRY::get, DisplayType::typeId);
-    public static final StreamCodec<ByteBuf, ? extends DisplayType<? extends Display>> TYPE_STREAM = ResourceLocation.STREAM_CODEC.map(REGISTRY::get, DisplayType::typeId);
+    private static final Map<Identifier, DisplayType<? extends Display>> REGISTRY = new HashMap<>();
+    public static final Codec<DisplayType<?>> TYPE_CODEC = Identifier.CODEC.xmap(REGISTRY::get, DisplayType::typeId);
+    public static final StreamCodec<ByteBuf, ? extends DisplayType<? extends Display>> TYPE_STREAM = Identifier.STREAM_CODEC.map(REGISTRY::get, DisplayType::typeId);
     public static final Codec<Display> DISPLAY_STATE_CODEC = TYPE_CODEC.dispatch(Display::getType, DisplayType::codec);
     public static final StreamCodec<FriendlyByteBuf, Display> DISPLAY_STATE_STREAM = new StreamCodec<>() {
         @NotNull
         @Override
         public Display decode(@NotNull FriendlyByteBuf buf) {
-            final ResourceLocation id = buf.readResourceLocation();
+            final Identifier id = buf.readIdentifier();
             if (!REGISTRY.containsKey(id)) {
                 BotanyPotsMod.LOG.error("Display type {} does not exist!", id);
                 throw new IllegalStateException("Display type " + id + " does not exist!");
@@ -44,7 +44,7 @@ public record DisplayType<T extends Display>(ResourceLocation typeId, MapCodec<T
 
         @Override
         public void encode(@NotNull FriendlyByteBuf buf, @NotNull Display state) {
-            buf.writeResourceLocation(state.getType().typeId());
+            buf.writeIdentifier(state.getType().typeId());
             ((StreamCodec) state.getType().stream()).encode(buf, state);
         }
     };
@@ -59,7 +59,7 @@ public record DisplayType<T extends Display>(ResourceLocation typeId, MapCodec<T
      */
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T extends Display> DisplayType<T> get(ResourceLocation id) {
+    public static <T extends Display> DisplayType<T> get(Identifier id) {
         return (DisplayType<T>) REGISTRY.get(id);
     }
 
@@ -72,7 +72,7 @@ public record DisplayType<T extends Display>(ResourceLocation typeId, MapCodec<T
      * @param <T>    The type of display represented by the type.
      * @return The registered display type.
      */
-    public static <T extends Display> DisplayType<T> register(ResourceLocation id, MapCodec<T> codec, StreamCodec<FriendlyByteBuf, T> buffer) {
+    public static <T extends Display> DisplayType<T> register(Identifier id, MapCodec<T> codec, StreamCodec<FriendlyByteBuf, T> buffer) {
         final DisplayType<T> type = new DisplayType<>(id, codec, buffer);
         if (REGISTRY.containsKey(id)) {
             BotanyPotsMod.LOG.warn("Display type ID {} has already been assigned to {}. You can not set it to {}.", id, REGISTRY.get(id), type);

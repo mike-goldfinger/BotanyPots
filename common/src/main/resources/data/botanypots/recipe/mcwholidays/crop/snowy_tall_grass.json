@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "mcwholidays:snowy_tall_grass",
-  "input": {
-    "item": "mcwholidays:snowy_tall_grass"
-  }
+  "input": "mcwholidays:snowy_tall_grass"
 }

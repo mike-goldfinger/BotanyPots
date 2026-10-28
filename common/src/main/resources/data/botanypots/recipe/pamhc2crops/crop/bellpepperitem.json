@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pambellpeppercrop",
-  "input": {
-    "item": "pamhc2crops:bellpepperitem"
-  }
+  "input": "pamhc2crops:bellpepperitem"
 }

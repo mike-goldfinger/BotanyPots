@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pammulberrycrop",
-  "input": {
-    "item": "pamhc2crops:mulberryseeditem"
-  }
+  "input": "pamhc2crops:mulberryseeditem"
 }

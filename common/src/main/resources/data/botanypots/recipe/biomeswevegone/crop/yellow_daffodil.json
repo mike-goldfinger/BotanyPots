@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:yellow_daffodil",
-  "input": {
-    "item": "biomeswevegone:yellow_daffodil"
-  }
+  "input": "biomeswevegone:yellow_daffodil"
 }

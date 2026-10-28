@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:dill_herb",
-  "input": {
-    "item": "herbsandharvest:dill_herb"
-  }
+  "input": "herbsandharvest:dill_herb"
 }

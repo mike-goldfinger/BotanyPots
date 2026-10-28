@@ -9,13 +9,13 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "sushigocrafting:rice_crop",
-  "input": {
-    "item": "sushigocrafting:rice_seeds"
-  },
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
+  "input": "sushigocrafting:rice_seeds",
+  "soil": "#botanypots:soil/water",
   "render_options": {
-    "offset": [0, -0.30, 0]
+    "offset": [
+      0,
+      -0.3,
+      0
+    ]
   }
 }

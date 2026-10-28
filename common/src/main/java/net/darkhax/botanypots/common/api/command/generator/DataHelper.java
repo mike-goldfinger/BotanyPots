@@ -9,7 +9,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +38,7 @@ public class DataHelper {
         return tag(tag.location());
     }
 
-    public static JsonObject tag(ResourceLocation tag) {
+    public static JsonObject tag(Identifier tag) {
         return object("{\"tag\":\"" + tag + "\"}");
     }
 
@@ -58,7 +58,7 @@ public class DataHelper {
         return blockTag(tag.location());
     }
 
-    public static JsonObject blockTag(ResourceLocation tag) {
+    public static JsonObject blockTag(Identifier tag) {
         final JsonObject object = ingredientBase("bookshelf:block_tag");
         object.addProperty("tag", tag.toString());
         return object;
@@ -74,7 +74,7 @@ public class DataHelper {
         return object;
     }
 
-    public static JsonObject ingredientBase(ResourceLocation type) {
+    public static JsonObject ingredientBase(Identifier type) {
         return ingredientBase(type.toString());
     }
 

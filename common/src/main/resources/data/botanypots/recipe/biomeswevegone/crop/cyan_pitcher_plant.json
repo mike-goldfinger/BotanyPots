@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:cyan_pitcher_plant",
-  "input": {
-    "item": "biomeswevegone:cyan_pitcher_plant"
-  }
+  "input": "biomeswevegone:cyan_pitcher_plant"
 }

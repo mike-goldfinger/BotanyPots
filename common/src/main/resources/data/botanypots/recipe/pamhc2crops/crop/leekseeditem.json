@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamleekcrop",
-  "input": {
-    "item": "pamhc2crops:leekseeditem"
-  }
+  "input": "pamhc2crops:leekseeditem"
 }

@@ -1,8 +1,6 @@
 {
   "type": "botanypots:fertilizer",
-  "held_item": {
-    "item": "minecraft:bone_meal"
-  },
+  "held_item": "minecraft:bone_meal",
   "growth": {
     "type": "botanypots:ranged",
     "min": 400,

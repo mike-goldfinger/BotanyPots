@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "forbidden_arcanus:edelwood_water_bucket"
-  },
+  "input": "forbidden_arcanus:edelwood_water_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

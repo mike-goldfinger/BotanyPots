@@ -4,7 +4,7 @@ import net.darkhax.botanypots.common.api.data.recipes.crop.Crop;
 import net.darkhax.botanypots.common.api.data.recipes.soil.Soil;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -70,7 +70,7 @@ public record BlockEntityContext(BotanyPotBlockEntity pot, @Nullable Player play
     }
 
     @Override
-    public void runFunction(ResourceLocation functionId) {
+    public void runFunction(Identifier functionId) {
         this.pot.runFunction(functionId);
     }
 
@@ -95,7 +95,7 @@ public record BlockEntityContext(BotanyPotBlockEntity pot, @Nullable Player play
         if (level == null && this.player != null) {
             level = this.player.level();
         }
-        return level != null && !level.isClientSide;
+        return level != null && !level.isClientSide();
     }
 
     @Override

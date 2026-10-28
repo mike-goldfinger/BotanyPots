@@ -7,7 +7,7 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.Helpers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.MushroomBlock;
 import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SculkBehaviour;
 import net.minecraft.world.level.block.SporeBlossomBlock;
-import net.minecraft.world.level.block.WaterlilyBlock;
+import net.minecraft.world.level.block.LilyPadBlock;
 
 /**
  * This crop generator is used as a fallback when none of the other generators have claimed an item. It will generate a
@@ -34,9 +34,9 @@ import net.minecraft.world.level.block.WaterlilyBlock;
  */
 public class MissingCropGenerator implements CropGenerator {
 
-    private static final TagKey<Item> FLOWERS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("minecraft", "flowers"));
-    private static final TagKey<Item> FORGE_SEEDS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "seeds"));
-    private static final TagKey<Item> COMMON_SEEDS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "seeds"));
+    private static final TagKey<Item> FLOWERS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("minecraft", "flowers"));
+    private static final TagKey<Item> FORGE_SEEDS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("forge", "seeds"));
+    private static final TagKey<Item> COMMON_SEEDS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "seeds"));
     private static final TagKey<Item> IGNORED_ITEMS = TagKey.create(Registries.ITEM, BotanyPotsMod.id("crop_generator_ignores"));
 
     @Override
@@ -49,7 +49,7 @@ public class MissingCropGenerator implements CropGenerator {
                 return true;
             }
             final Block placedBlock = blockItem.getBlock();
-            final ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(placedBlock);
+            final Identifier blockId = BuiltInRegistries.BLOCK.getKey(placedBlock);
             if (placedBlock instanceof CropBlock || placedBlock instanceof GrowingPlantBlock || placedBlock instanceof BonemealableBlock || placedBlock instanceof SaplingBlock || placedBlock instanceof BushBlock || placedBlock instanceof SporeBlossomBlock || (placedBlock instanceof BaseCoralPlantTypeBlock && !blockId.getPath().startsWith("dead_"))) {
                 return true;
             }
@@ -62,15 +62,15 @@ public class MissingCropGenerator implements CropGenerator {
     public JsonObject generateData(ServerLevel level, ItemStack stack) {
         final JsonObject output = new JsonObject();
         final Block block = ((BlockItem) stack.getItem()).getBlock();
-        final ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(block);
+        final Identifier blockId = BuiltInRegistries.BLOCK.getKey(block);
         output.add("bookshelf:load_conditions", DataHelper.array(DataHelper.requiresBlock(block)));
         output.addProperty("type", "botanypots:block_derived_crop");
         output.addProperty("block", BuiltInRegistries.BLOCK.getKey(block).toString());
-        if (block instanceof BaseCoralPlantTypeBlock || block instanceof WaterlilyBlock || Helpers.contains(blockId.getPath(), "lily_pad", "lilypad", "coral") ) {
+        if (block instanceof BaseCoralPlantTypeBlock || block instanceof LilyPadBlock || Helpers.contains(blockId.getPath(), "lily_pad", "lilypad", "coral") ) {
             output.add("soil", DataHelper.tag(BotanyPotsMod.id("soil/water")));
         }
         else if (block instanceof MushroomBlock || Helpers.contains(blockId.getPath(), "mushroom")) {
-            final JsonObject blockTag = DataHelper.blockTag(ResourceLocation.withDefaultNamespace("mushroom_grow_block"));
+            final JsonObject blockTag = DataHelper.blockTag(Identifier.withDefaultNamespace("mushroom_grow_block"));
             final JsonObject itemTag = DataHelper.tag(BotanyPotsMod.id("soil/mushroom"));
             output.add("soil", DataHelper.ingredients(blockTag, itemTag));
         }
@@ -80,7 +80,7 @@ public class MissingCropGenerator implements CropGenerator {
         else if (block instanceof SculkBehaviour || Helpers.contains(blockId.getPath(), "sculk")) {
             output.add("soil", DataHelper.tag(BotanyPotsMod.id("soil/sculk")));
         }
-        output.add("input", DataHelper.ingredient(Ingredient.of(stack)));
+        output.add("input", DataHelper.ingredient(Ingredient.of(stack.getItem())));
         return output;
     }
 }

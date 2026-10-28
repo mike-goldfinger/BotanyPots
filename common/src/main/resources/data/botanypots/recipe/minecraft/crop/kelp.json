@@ -1,9 +1,7 @@
 {
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:kelp",
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
+  "soil": "#botanypots:soil/water",
   "display": [
     {
       "type": "botanypots:simple",
@@ -11,7 +9,11 @@
         "block": "minecraft:kelp_plant"
       },
       "options": {
-        "offset": [0, -0.3, 0]
+        "offset": [
+          0,
+          -0.3,
+          0
+        ]
       }
     },
     {

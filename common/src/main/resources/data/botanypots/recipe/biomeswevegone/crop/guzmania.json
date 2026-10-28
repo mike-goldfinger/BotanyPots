@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:guzmania",
-  "input": {
-    "item": "biomeswevegone:guzmania"
-  }
+  "input": "biomeswevegone:guzmania"
 }

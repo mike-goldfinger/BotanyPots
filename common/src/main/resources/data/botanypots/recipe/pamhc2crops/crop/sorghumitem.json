@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamsorghumcrop",
-  "input": {
-    "item": "pamhc2crops:sorghumitem"
-  }
+  "input": "pamhc2crops:sorghumitem"
 }

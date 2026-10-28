@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:barrel_cactus",
-  "input": {
-    "item": "regions_unexplored:barrel_cactus"
-  },
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  }
+  "input": "regions_unexplored:barrel_cactus",
+  "soil": "#botanypots:soil/sand"
 }

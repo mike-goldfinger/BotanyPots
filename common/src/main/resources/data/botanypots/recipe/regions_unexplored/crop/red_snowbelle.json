@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:red_snowbelle",
-  "input": {
-    "item": "regions_unexplored:red_snowbelle"
-  }
+  "input": "regions_unexplored:red_snowbelle"
 }

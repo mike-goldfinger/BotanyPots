@@ -7,7 +7,7 @@ import net.darkhax.botanypots.common.api.data.recipes.soil.Soil;
 import net.darkhax.botanypots.common.impl.Helpers;
 import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -51,7 +51,7 @@ public record DisplayContext(List<ItemStack> inventory) implements BotanyPotCont
     }
 
     @Override
-    public void runFunction(ResourceLocation functionId) {
+    public void runFunction(Identifier functionId) {
         throw new IllegalStateException("Display context can not run functions! Function=" + functionId.toString());
     }
 

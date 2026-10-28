@@ -9,9 +9,7 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "twilightforest:torchberry_plant",
-  "input": {
-    "item": "twilightforest:torchberry_plant"
-  },
+  "input": "twilightforest:torchberry_plant",
   "render_options": {
     "rotation": "X_180"
   }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:iris",
-  "input": {
-    "item": "biomeswevegone:iris"
-  }
+  "input": "biomeswevegone:iris"
 }

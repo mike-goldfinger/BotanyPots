@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "sushigocrafting:sesame_crop",
-  "input": {
-    "item": "sushigocrafting:sesame_seeds"
-  }
+  "input": "sushigocrafting:sesame_seeds"
 }

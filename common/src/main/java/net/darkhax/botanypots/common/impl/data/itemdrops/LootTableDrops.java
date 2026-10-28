@@ -12,7 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -27,44 +27,44 @@ public class LootTableDrops implements ItemDropProvider {
 
     public static final Supplier<ItemDropProviderType<?>> TYPE = ItemDropProviderType.getLazy(BotanyPotsMod.id("loot_table"));
     public static final MapCodec<LootTableDrops> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ResourceLocation.CODEC.fieldOf("table_id").forGetter(LootTableDrops::getTableId)
+            Identifier.CODEC.fieldOf("table_id").forGetter(LootTableDrops::getTableId)
     ).apply(instance, LootTableDrops::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, LootTableDrops> STREAM = StreamCodec.of(
             (buf, val) -> {
-                buf.writeResourceLocation(val.tableId);
+                buf.writeIdentifier(val.tableId);
                 ItemStack.OPTIONAL_LIST_STREAM_CODEC.encode(buf, val.displayItems.get());
             },
             buf -> {
-                final ResourceLocation tableId = buf.readResourceLocation();
+                final Identifier tableId = buf.readIdentifier();
                 final List<ItemStack> items = ItemStack.OPTIONAL_LIST_STREAM_CODEC.decode(buf);
                 return new LootTableDrops(tableId, items);
             }
     );
 
-    private final ResourceLocation tableId;
+    private final Identifier tableId;
     private final CachedSupplier<LootTable> cachedTable;
     private final CachedSupplier<List<ItemStack>> displayItems;
 
     // Server
-    public LootTableDrops(ResourceLocation tableId) {
+    public LootTableDrops(Identifier tableId) {
         this.tableId = tableId;
         this.cachedTable = CachedSupplier.cache(this::lookupTable);
         this.displayItems = CachedSupplier.cache(this::buildDisplayItems);
     }
 
     // client
-    public LootTableDrops(ResourceLocation tableId, List<ItemStack> displayItems) {
+    public LootTableDrops(Identifier tableId, List<ItemStack> displayItems) {
         this.tableId = tableId;
         this.cachedTable = CachedSupplier.singleton(null);
         this.displayItems = CachedSupplier.singleton(displayItems);
     }
 
     public LootTable lookupTable() {
-        return Objects.requireNonNull(BotanyPotsMod.REGISTRY_ACCESS.get()).registryOrThrow(Registries.LOOT_TABLE).get(ResourceKey.create(Registries.LOOT_TABLE, tableId));
+        return BotanyPotsMod.server().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, tableId));
     }
 
     public List<ItemStack> buildDisplayItems() {
-        return LootPoolEntryDescriptions.getUniqueItems(Objects.requireNonNull(BotanyPotsMod.REGISTRY_ACCESS.get()), this.cachedTable.get());
+        return LootPoolEntryDescriptions.getUniqueItems(BotanyPotsMod.server(), this.cachedTable.get());
     }
 
     public final boolean hasCachedTable() {
@@ -75,7 +75,7 @@ public class LootTableDrops implements ItemDropProvider {
     public void fallbackDrops(BotanyPotContext context, Level level, Consumer<ItemStack> drops) {
     }
 
-    public ResourceLocation getTableId() {
+    public Identifier getTableId() {
         return this.tableId;
     }
 

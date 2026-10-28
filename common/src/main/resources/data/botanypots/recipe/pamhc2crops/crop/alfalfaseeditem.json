@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamalfalfacrop",
-  "input": {
-    "item": "pamhc2crops:alfalfaseeditem"
-  }
+  "input": "pamhc2crops:alfalfaseeditem"
 }

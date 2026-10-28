@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "minecolonies:rice",
-  "input": {
-    "item": "minecolonies:rice"
-  }
+  "input": "minecolonies:rice"
 }

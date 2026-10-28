@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pammustardseedscrop",
-  "input": {
-    "item": "pamhc2crops:mustardseedsseeditem"
-  }
+  "input": "pamhc2crops:mustardseedsseeditem"
 }

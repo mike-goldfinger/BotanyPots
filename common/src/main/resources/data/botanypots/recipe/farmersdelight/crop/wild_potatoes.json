@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "farmersdelight:wild_potatoes",
-  "input": {
-    "item": "farmersdelight:wild_potatoes"
-  }
+  "input": "farmersdelight:wild_potatoes"
 }

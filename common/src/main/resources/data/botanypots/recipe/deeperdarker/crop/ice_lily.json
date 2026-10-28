@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "deeperdarker:ice_lily",
-  "input": {
-    "item": "deeperdarker:ice_lily"
-  },
-  "soil": {
-    "tag": "botanypots:soil/water"
-  }
+  "input": "deeperdarker:ice_lily",
+  "soil": "#botanypots:soil/water"
 }

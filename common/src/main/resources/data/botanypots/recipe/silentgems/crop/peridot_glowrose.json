@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:peridot_glowrose",
-  "input": {
-    "item": "silentgems:peridot_glowrose"
-  }
+  "input": "silentgems:peridot_glowrose"
 }

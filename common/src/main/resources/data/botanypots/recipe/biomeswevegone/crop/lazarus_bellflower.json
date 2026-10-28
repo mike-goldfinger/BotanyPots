@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:lazarus_bellflower",
-  "input": {
-    "item": "biomeswevegone:lazarus_bellflower"
-  }
+  "input": "biomeswevegone:lazarus_bellflower"
 }

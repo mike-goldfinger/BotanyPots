@@ -2,7 +2,7 @@ package net.darkhax.botanypots.common.impl.block.entity;
 
 import net.darkhax.bookshelf.common.api.data.enchantment.EnchantmentLevel;
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
-import net.darkhax.bookshelf.common.api.function.ReloadableCache;
+import net.darkhax.botanypots.common.api.function.ReloadableCache;
 import net.darkhax.bookshelf.common.api.service.Services;
 import net.darkhax.bookshelf.common.api.util.DataHelper;
 import net.darkhax.bookshelf.common.api.util.TickAccumulator;
@@ -22,7 +22,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -49,7 +50,7 @@ public class BotanyPotBlockEntity extends AbstractBotanyPotBlockEntity {
     private final ReloadableCache<RecipeHolder<Soil>> soil = ReloadableCache.of(level -> {
         final Optional<SoilOverride> override = SoilOverride.get(this.getSoilItem());
         if (override.isPresent()) {
-            return new RecipeHolder<>(BotanyPotsMod.BUILTIN_COMPONENT_ID, override.get().soil());
+            return new RecipeHolder<>(BotanyPotsMod.BUILTIN_COMPONENT_KEY, override.get().soil());
         }
         final RecipeCache<Soil> cache = Soil.CACHE.apply(level);
         return cache != null ? cache.lookup(this.getSoilItem(), recipeContext, level) : null;
@@ -58,7 +59,7 @@ public class BotanyPotBlockEntity extends AbstractBotanyPotBlockEntity {
     private final ReloadableCache<RecipeHolder<Crop>> crop = ReloadableCache.of(level -> {
         final Optional<CropOverride> override = CropOverride.get(this.getSeedItem());
         if (override.isPresent()) {
-            return new RecipeHolder<>(BotanyPotsMod.BUILTIN_COMPONENT_ID, override.get().crop());
+            return new RecipeHolder<>(BotanyPotsMod.BUILTIN_COMPONENT_KEY, override.get().crop());
         }
         final RecipeCache<Crop> cache = Crop.CACHE.apply(level);
         return cache != null ? cache.lookup(this.getSeedItem(), recipeContext, level) : null;
@@ -233,23 +234,23 @@ public class BotanyPotBlockEntity extends AbstractBotanyPotBlockEntity {
     }
 
     @Override
-    public void loadAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        this.growthTime.setTicks(tag.getFloat("growth_time"));
-        this.comparatorLevel = tag.getInt("comparator_level");
-        this.exportCooldown = new TickAccumulator(tag.getFloat("export_delay"));
-        this.growCooldown = new TickAccumulator(tag.getFloat("grow_cooldown"));
-        this.bonemealCooldown = tag.getInt("bonemeal_cooldown");
+    protected void loadAdditional(@NotNull ValueInput input) {
+        super.loadAdditional(input);
+        this.growthTime.setTicks(input.getFloatOr("growth_time", 0f));
+        this.comparatorLevel = input.getIntOr("comparator_level", 0);
+        this.exportCooldown = new TickAccumulator(input.getFloatOr("export_delay", 0f));
+        this.growCooldown = new TickAccumulator(input.getFloatOr("grow_cooldown", 0f));
+        this.bonemealCooldown = input.getIntOr("bonemeal_cooldown", 0);
     }
 
     @Override
-    public void saveAdditional(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.putFloat("growth_time", this.growthTime.getTicks());
-        tag.putInt("comparator_level", this.comparatorLevel);
-        tag.putFloat("export_delay", this.exportCooldown.getTicks());
-        tag.putFloat("grow_cooldown", this.growCooldown.getTicks());
-        tag.putInt("bonemeal_cooldown", this.bonemealCooldown);
+    protected void saveAdditional(@NotNull ValueOutput output) {
+        super.saveAdditional(output);
+        output.putFloat("growth_time", this.growthTime.getTicks());
+        output.putInt("comparator_level", this.comparatorLevel);
+        output.putFloat("export_delay", this.exportCooldown.getTicks());
+        output.putFloat("grow_cooldown", this.growCooldown.getTicks());
+        output.putInt("bonemeal_cooldown", this.bonemealCooldown);
     }
 
     @NotNull
@@ -257,7 +258,7 @@ public class BotanyPotBlockEntity extends AbstractBotanyPotBlockEntity {
     public CompoundTag getUpdateTag(@NotNull HolderLookup.Provider registries) {
         final CompoundTag syncTag = this.saveCustomOnly(registries);
         syncTag.remove("comparator_level");
-        syncTag.put("Items", DataHelper.containerSubList(syncTag.getList("Items", Tag.TAG_COMPOUND), slot -> slot <= TOOL_SLOT));
+        syncTag.put("Items", DataHelper.containerSubList(syncTag.getListOrEmpty("Items"), slot -> slot <= TOOL_SLOT));
         return syncTag;
     }
 

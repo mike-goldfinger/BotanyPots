@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "forbidden_arcanus:yellow_orchid",
-  "input": {
-    "item": "forbidden_arcanus:yellow_orchid"
-  }
+  "input": "forbidden_arcanus:yellow_orchid"
 }

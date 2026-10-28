@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "farmersdelight:sandy_shrub",
-  "input": {
-    "item": "farmersdelight:sandy_shrub"
-  }
+  "input": "farmersdelight:sandy_shrub"
 }

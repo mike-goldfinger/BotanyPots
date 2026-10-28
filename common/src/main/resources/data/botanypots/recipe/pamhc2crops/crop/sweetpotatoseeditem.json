@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamsweetpotatocrop",
-  "input": {
-    "item": "pamhc2crops:sweetpotatoseeditem"
-  }
+  "input": "pamhc2crops:sweetpotatoseeditem"
 }

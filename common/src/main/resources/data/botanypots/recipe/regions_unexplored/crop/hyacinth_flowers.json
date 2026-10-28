@@ -9,9 +9,7 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:hyacinth_flowers",
-  "input": {
-    "item": "regions_unexplored:hyacinth_flowers"
-  },
+  "input": "regions_unexplored:hyacinth_flowers",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

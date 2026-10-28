@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:flower_patch",
-  "input": {
-    "item": "biomeswevegone:flower_patch"
-  }
+  "input": "biomeswevegone:flower_patch"
 }

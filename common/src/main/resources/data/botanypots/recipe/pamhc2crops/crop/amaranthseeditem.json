@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamamaranthcrop",
-  "input": {
-    "item": "pamhc2crops:amaranthseeditem"
-  }
+  "input": "pamhc2crops:amaranthseeditem"
 }

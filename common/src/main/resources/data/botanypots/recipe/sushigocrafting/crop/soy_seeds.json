@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "sushigocrafting:soy_crop",
-  "input": {
-    "item": "sushigocrafting:soy_seeds"
-  }
+  "input": "sushigocrafting:soy_seeds"
 }

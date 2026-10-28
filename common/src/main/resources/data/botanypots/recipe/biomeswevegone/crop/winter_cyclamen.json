@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:winter_cyclamen",
-  "input": {
-    "item": "biomeswevegone:winter_cyclamen"
-  }
+  "input": "biomeswevegone:winter_cyclamen"
 }

@@ -9,7 +9,7 @@ import net.darkhax.bookshelf.common.api.data.conditions.LoadConditions;
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.config.Config;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public record ConfigLoadCondition(String property) implements ILoadCondition {
 
-    public static final ResourceLocation TYPE_ID = BotanyPotsMod.id("config");
+    public static final Identifier TYPE_ID = BotanyPotsMod.id("config");
     public static final Supplier<ConditionType> TYPE = CachedSupplier.cache(() -> LoadConditions.getType(TYPE_ID));
     public static final MapCodec<ConfigLoadCondition> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(Codec.STRING.fieldOf("property").forGetter(ConfigLoadCondition::property)).apply(instance, ConfigLoadCondition::new));
 

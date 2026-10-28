@@ -5,7 +5,8 @@ import net.darkhax.botanypots.common.api.data.display.types.Display;
 import net.darkhax.botanypots.common.api.data.display.types.DisplayType;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -45,7 +46,8 @@ public abstract class DisplayRenderer<T extends Display> {
      * @param level        The current level, will always be a client level.
      * @param pos          The position of te block being rendered.
      * @param tickDelta    The delta between frames.
-     * @param bufferSource Buffer source for rendering.
+     * @param collector    Collects render submissions for the frame.
+     * @param camera       The current camera state.
      * @param light        Packed light of the block.
      * @param overlay      Packed overlay of the block.
      * @param pot          The pot block entity.
@@ -55,8 +57,8 @@ public abstract class DisplayRenderer<T extends Display> {
      * @return The new height offset for the next display.
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public static float renderState(BlockEntityRendererProvider.Context context, Display displayState, PoseStack stack, Level level, BlockPos pos, float tickDelta, MultiBufferSource bufferSource, int light, int overlay, BotanyPotBlockEntity pot, float progress, float growthScale, float heightOffset) {
-        return ((DisplayRenderer) getRenderer(displayState)).render(context, displayState, stack, level, pos, tickDelta, bufferSource, light, overlay, pot, progress, growthScale, heightOffset);
+    public static float renderState(BlockEntityRendererProvider.Context context, Display displayState, PoseStack stack, Level level, BlockPos pos, float tickDelta, SubmitNodeCollector collector, CameraRenderState camera, int light, int overlay, BotanyPotBlockEntity pot, float progress, float growthScale, float heightOffset) {
+        return ((DisplayRenderer) getRenderer(displayState)).render(context, displayState, stack, level, pos, tickDelta, collector, camera, light, overlay, pot, progress, growthScale, heightOffset);
     }
 
     /**
@@ -68,7 +70,8 @@ public abstract class DisplayRenderer<T extends Display> {
      * @param level        The current level, will always be a client level.
      * @param pos          The position of te block being rendered.
      * @param tickDelta    The delta between frames.
-     * @param bufferSource Buffer source for rendering.
+     * @param collector    Collects render submissions for the frame.
+     * @param camera       The current camera state.
      * @param light        Packed light of the block.
      * @param overlay      Packed overlay of the block.
      * @param pot          The pot block entity.
@@ -77,7 +80,7 @@ public abstract class DisplayRenderer<T extends Display> {
      * @param heightOffset A height offset used to make displays stack perfectly on top of each other.
      * @return The new height offset for the next display.
      */
-    public abstract float render(BlockEntityRendererProvider.Context context, T displayState, PoseStack stack, Level level, BlockPos pos, float tickDelta, MultiBufferSource bufferSource, int light, int overlay, BotanyPotBlockEntity pot, float progress, float growthScale, float heightOffset);
+    public abstract float render(BlockEntityRendererProvider.Context context, T displayState, PoseStack stack, Level level, BlockPos pos, float tickDelta, SubmitNodeCollector collector, CameraRenderState camera, int light, int overlay, BotanyPotBlockEntity pot, float progress, float growthScale, float heightOffset);
 
     /**
      * Binds a renderer to a display type. Built-in types are bound during the same phase as vanilla tile entity

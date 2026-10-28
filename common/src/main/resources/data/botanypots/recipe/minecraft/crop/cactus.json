@@ -1,7 +1,5 @@
 {
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:cactus",
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  }
+  "soil": "#botanypots:soil/sand"
 }

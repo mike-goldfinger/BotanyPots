@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:tadpole_bucket"
-  },
+  "input": "minecraft:tadpole_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

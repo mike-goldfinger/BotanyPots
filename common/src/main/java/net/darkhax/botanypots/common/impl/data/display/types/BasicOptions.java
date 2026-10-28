@@ -1,5 +1,6 @@
 package net.darkhax.botanypots.common.impl.data.display.types;
 
+import net.darkhax.botanypots.common.impl.Helpers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.darkhax.bookshelf.common.api.data.codecs.map.MapCodecs;
@@ -42,9 +43,9 @@ public class BasicOptions implements RenderOptions {
     public static Vector3f DEFAULT_OFFSET = new Vector3f(0f, 0f, 0f);
 
     public static final Codec<BasicOptions> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            ExtraCodecs.VECTOR3F.optionalFieldOf("scale", DEFAULT_SCALE).forGetter(BasicOptions::getScale),
-            ExtraCodecs.VECTOR3F.optionalFieldOf("offset", DEFAULT_OFFSET).forGetter(BasicOptions::getOffset),
-            AxisAlignedRotation.CODEC_HELPER.getList("rotation", BasicOptions::getRotations, new ArrayList<>()),
+            Helpers.VECTOR3F_CODEC.optionalFieldOf("scale", DEFAULT_SCALE).forGetter(BasicOptions::getScale),
+            Helpers.VECTOR3F_CODEC.optionalFieldOf("offset", DEFAULT_OFFSET).forGetter(BasicOptions::getOffset),
+            AxisAlignedRotation.CODEC_HELPER.listCodec("rotation", BasicOptions::getRotations, new ArrayList<AxisAlignedRotation>()),
             MapCodecs.BOOLEAN.get("render_fluid", BasicOptions::shouldRenderFluid, false),
             TintColor.CODEC.optionalFieldOf("color").forGetter(BasicOptions::getColor),
             MapCodecs.flexibleSet(Direction.CODEC).optionalFieldOf("faces", DEFAULT_FACES).forGetter(BasicOptions::getFaces)
@@ -53,8 +54,8 @@ public class BasicOptions implements RenderOptions {
     public static final StreamCodec<FriendlyByteBuf, BasicOptions> STREAM = new StreamCodec<>() {
         @Override
         public void encode(@NotNull FriendlyByteBuf buf, @NotNull BasicOptions state) {
-            ByteBufCodecs.VECTOR3F.encode(buf, state.scale);
-            ByteBufCodecs.VECTOR3F.encode(buf, state.offset);
+            Helpers.VECTOR3F_STREAM.encode(buf, state.scale);
+            Helpers.VECTOR3F_STREAM.encode(buf, state.offset);
             buf.writeCollection(state.rotations, AxisAlignedRotation.STREAM);
             buf.writeBoolean(state.renderFluid);
             buf.writeOptional(state.tintColor, TintColor.STREAM);
@@ -67,8 +68,8 @@ public class BasicOptions implements RenderOptions {
         @NotNull
         @Override
         public BasicOptions decode(@NotNull FriendlyByteBuf buf) {
-            final Vector3f scale = ByteBufCodecs.VECTOR3F.decode(buf);
-            final Vector3f offset = ByteBufCodecs.VECTOR3F.decode(buf);
+            final Vector3f scale = Helpers.VECTOR3F_STREAM.decode(buf);
+            final Vector3f offset = Helpers.VECTOR3F_STREAM.decode(buf);
             final List<AxisAlignedRotation> rotations = buf.readList(AxisAlignedRotation.STREAM);
             final boolean renderFluid = buf.readBoolean();
             final Optional<TintColor> tintColor = buf.readOptional(TintColor.STREAM);

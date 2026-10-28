@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:cyan_rose",
-  "input": {
-    "item": "biomeswevegone:cyan_rose"
-  }
+  "input": "biomeswevegone:cyan_rose"
 }

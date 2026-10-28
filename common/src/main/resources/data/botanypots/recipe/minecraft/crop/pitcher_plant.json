@@ -2,11 +2,7 @@
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:pitcher_plant",
   "input": [
-    {
-      "item": "minecraft:pitcher_plant"
-    },
-    {
-      "item": "minecraft:pitcher_pod"
-    }
+    "minecraft:pitcher_plant",
+    "minecraft:pitcher_pod"
   ]
 }

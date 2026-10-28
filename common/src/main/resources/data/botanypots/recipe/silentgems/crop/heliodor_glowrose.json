@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:heliodor_glowrose",
-  "input": {
-    "item": "silentgems:heliodor_glowrose"
-  }
+  "input": "silentgems:heliodor_glowrose"
 }

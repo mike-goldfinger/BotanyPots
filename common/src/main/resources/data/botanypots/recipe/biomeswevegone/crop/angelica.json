@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:angelica",
-  "input": {
-    "item": "biomeswevegone:angelica"
-  }
+  "input": "biomeswevegone:angelica"
 }

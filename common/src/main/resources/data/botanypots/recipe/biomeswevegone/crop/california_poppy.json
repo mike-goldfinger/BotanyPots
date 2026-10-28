@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:california_poppy",
-  "input": {
-    "item": "biomeswevegone:california_poppy"
-  }
+  "input": "biomeswevegone:california_poppy"
 }

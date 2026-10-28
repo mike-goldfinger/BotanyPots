@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "sushigocrafting:wasabi_crop",
-  "input": {
-    "item": "sushigocrafting:wasabi_seeds"
-  }
+  "input": "sushigocrafting:wasabi_seeds"
 }

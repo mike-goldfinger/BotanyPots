@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "mcwholidays:snowy_tall_fern",
-  "input": {
-    "item": "mcwholidays:snowy_tall_fern"
-  }
+  "input": "mcwholidays:snowy_tall_fern"
 }

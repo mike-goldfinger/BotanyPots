@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:kovan_flower",
-  "input": {
-    "item": "biomeswevegone:kovan_flower"
-  }
+  "input": "biomeswevegone:kovan_flower"
 }

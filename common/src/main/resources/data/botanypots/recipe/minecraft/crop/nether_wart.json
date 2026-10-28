@@ -1,7 +1,5 @@
 {
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:nether_wart",
-  "soil": {
-    "tag": "botanypots:soil/soul_sand"
-  }
+  "soil": "#botanypots:soil/soul_sand"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:day_lily",
-  "input": {
-    "item": "regions_unexplored:day_lily"
-  }
+  "input": "regions_unexplored:day_lily"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcauliflowercrop",
-  "input": {
-    "item": "pamhc2crops:cauliflowerseeditem"
-  }
+  "input": "pamhc2crops:cauliflowerseeditem"
 }

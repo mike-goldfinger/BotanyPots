@@ -9,12 +9,8 @@
     "category": "misc",
     "group": "botanypots:waxed_pot",
     "ingredients": [
-        {
-            "item": "minecraft:honeycomb"
-        },
-        {
-            "item": "botanypots:yellow_glazed_terracotta_botany_pot"
-        }
+        "minecraft:honeycomb",
+        "botanypots:yellow_glazed_terracotta_botany_pot"
     ],
     "result": {
         "id": "botanypots:yellow_glazed_terracotta_waxed_botany_pot",

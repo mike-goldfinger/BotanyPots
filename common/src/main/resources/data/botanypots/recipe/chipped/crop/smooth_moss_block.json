@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "chipped:smooth_moss_block",
-  "input": {
-    "item": "chipped:smooth_moss_block"
-  }
+  "input": "chipped:smooth_moss_block"
 }

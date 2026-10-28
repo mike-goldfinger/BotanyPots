@@ -9,7 +9,7 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.Optional;
@@ -25,7 +25,7 @@ public record CropOverride(Crop crop) {
 
     public static final Codec<CropOverride> CODEC = BotanyPotRecipe.recipeCodec(Crop.TYPE).xmap(CropOverride::new, CropOverride::crop);
     public static final StreamCodec<RegistryFriendlyByteBuf, CropOverride> STREAM = BotanyPotRecipe.recipeStream(Crop.TYPE).map(CropOverride::new, CropOverride::crop);
-    public static final ResourceLocation TYPE_ID = BotanyPotsMod.id("crop");
+    public static final Identifier TYPE_ID = BotanyPotsMod.id("crop");
     public static final CachedSupplier<DataComponentType<CropOverride>> TYPE = CachedSupplier.of(BuiltInRegistries.DATA_COMPONENT_TYPE, TYPE_ID).cast();
 
     /**

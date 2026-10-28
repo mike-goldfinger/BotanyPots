@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:alexandrite_glowrose",
-  "input": {
-    "item": "silentgems:alexandrite_glowrose"
-  }
+  "input": "silentgems:alexandrite_glowrose"
 }

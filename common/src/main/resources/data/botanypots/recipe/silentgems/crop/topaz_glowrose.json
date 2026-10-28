@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:topaz_glowrose",
-  "input": {
-    "item": "silentgems:topaz_glowrose"
-  }
+  "input": "silentgems:topaz_glowrose"
 }

@@ -10,20 +10,16 @@
   "type": "botanypots:block_derived_crop",
   "block": "chipped:clustered_red_mushroom",
   "soil": {
-    "type": "bookshelf:either",
+    "neoforge:ingredient_type": "bookshelf:either",
     "fabric:type": "bookshelf:either",
     "ingredients": [
       {
-        "type": "bookshelf:block_tag",
+        "neoforge:ingredient_type": "bookshelf:block_tag",
         "fabric:type": "bookshelf:block_tag",
         "tag": "minecraft:mushroom_grow_block"
       },
-      {
-        "tag": "botanypots:soil/mushroom"
-      }
+      "#botanypots:soil/mushroom"
     ]
   },
-  "input": {
-    "item": "chipped:clustered_red_mushroom"
-  }
+  "input": "chipped:clustered_red_mushroom"
 }

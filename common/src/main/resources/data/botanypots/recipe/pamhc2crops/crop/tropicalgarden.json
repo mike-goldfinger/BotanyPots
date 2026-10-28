@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:tropicalgarden",
-  "input": {
-    "item": "pamhc2crops:tropicalgarden"
-  }
+  "input": "pamhc2crops:tropicalgarden"
 }

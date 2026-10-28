@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:lemongrass_herb",
-  "input": {
-    "item": "herbsandharvest:lemongrass_herb"
-  }
+  "input": "herbsandharvest:lemongrass_herb"
 }

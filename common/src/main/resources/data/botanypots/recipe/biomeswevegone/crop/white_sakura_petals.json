@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:white_sakura_petals",
-  "input": {
-    "item": "biomeswevegone:white_sakura_petals"
-  }
+  "input": "biomeswevegone:white_sakura_petals"
 }

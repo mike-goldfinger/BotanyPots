@@ -1,11 +1,7 @@
 {
   "type": "botanypots:pot_interaction",
-  "held_item": {
-    "tag": "minecraft:hoes"
-  },
-  "soil_item": {
-    "item": "minecraft:rooted_dirt"
-  },
+  "held_item": "#minecraft:hoes",
+  "soil_item": "minecraft:rooted_dirt",
   "new_soil": {
     "id": "minecraft:dirt"
   },

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:poppy_bush",
-  "input": {
-    "item": "regions_unexplored:poppy_bush"
-  }
+  "input": "regions_unexplored:poppy_bush"
 }

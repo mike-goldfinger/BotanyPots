@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:snowdrops",
-  "input": {
-    "item": "biomeswevegone:snowdrops"
-  }
+  "input": "biomeswevegone:snowdrops"
 }

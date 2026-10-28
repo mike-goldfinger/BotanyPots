@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:pink_anemone",
-  "input": {
-    "item": "biomeswevegone:pink_anemone"
-  }
+  "input": "biomeswevegone:pink_anemone"
 }

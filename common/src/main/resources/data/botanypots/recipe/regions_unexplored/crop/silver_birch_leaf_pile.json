@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:silver_birch_leaf_pile",
-  "input": {
-    "item": "regions_unexplored:silver_birch_leaf_pile"
-  }
+  "input": "regions_unexplored:silver_birch_leaf_pile"
 }

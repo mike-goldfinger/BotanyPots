@@ -17,13 +17,15 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -52,11 +54,11 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
     @Override
     public void apply(@NotNull BotanyPotContext context) {
         if (context instanceof BlockEntityContext input && input.player() instanceof ServerPlayer player && player.level() instanceof ServerLevel level) {
-            this.properties.newSoil.ifPresent(soilStack -> {
+            this.properties.newSoil.map(ItemStackTemplate::create).ifPresent(soilStack -> {
                 Services.GAMEPLAY.dropRemainders(level, input.pot().getBlockPos(), input.getSoilItem());
                 input.pot().setSoilItem(soilStack.copy());
             });
-            this.properties.newSeed.ifPresent(seedStack -> {
+            this.properties.newSeed.map(ItemStackTemplate::create).ifPresent(seedStack -> {
                 Services.GAMEPLAY.dropRemainders(level, input.pot().getBlockPos(), input.getSoilItem());
                 input.pot().setSeed(seedStack.copy());
             });
@@ -90,7 +92,7 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
 
     @NotNull
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<? extends Recipe<BotanyPotContext>> getSerializer() {
         return SERIALIZER;
     }
 
@@ -109,16 +111,16 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
         return this.properties.heldTest.test(stack);
     }
 
-    public record Properties(Ingredient heldTest, boolean damageHeld, boolean consumeHeld, Optional<Ingredient> soilTest, Optional<Ingredient> seedTest, Optional<ItemStack> newSoil, Optional<ItemStack> newSeed, Optional<ResourceKey<LootTable>> extraDrops, Optional<SoundEffect> soundEffect, boolean notifySculk) {
+    public record Properties(Ingredient heldTest, boolean damageHeld, boolean consumeHeld, Optional<Ingredient> soilTest, Optional<Ingredient> seedTest, Optional<ItemStackTemplate> newSoil, Optional<ItemStackTemplate> newSeed, Optional<ResourceKey<LootTable>> extraDrops, Optional<SoundEffect> soundEffect, boolean notifySculk) {
         public static final MapCodec<Properties> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Ingredient.CODEC.fieldOf("held_item").forGetter(Properties::heldTest),
                 Codec.BOOL.optionalFieldOf("damage_held", true).forGetter(Properties::damageHeld),
                 Codec.BOOL.optionalFieldOf("consume_held", false).forGetter(Properties::consumeHeld),
                 Ingredient.CODEC.optionalFieldOf("soil_item").forGetter(Properties::soilTest),
                 Ingredient.CODEC.optionalFieldOf("seed_item").forGetter(Properties::seedTest),
-                ItemStack.CODEC.optionalFieldOf("new_soil").forGetter(Properties::newSoil),
-                ItemStack.CODEC.optionalFieldOf("new_seed").forGetter(Properties::newSeed),
-                ResourceLocation.CODEC.optionalFieldOf("extra_drops").xmap(rl -> rl.map(arl -> ResourceKey.create(Registries.LOOT_TABLE, arl)), arl -> arl.map(ResourceKey::location)).forGetter(Properties::extraDrops),
+                ItemStackTemplate.CODEC.optionalFieldOf("new_soil").forGetter(Properties::newSoil),
+                ItemStackTemplate.CODEC.optionalFieldOf("new_seed").forGetter(Properties::newSeed),
+                Identifier.CODEC.optionalFieldOf("extra_drops").xmap(rl -> rl.map(arl -> ResourceKey.create(Registries.LOOT_TABLE, arl)), arl -> arl.map(ResourceKey::identifier)).forGetter(Properties::extraDrops),
                 SoundEffect.CODEC.codec().optionalFieldOf("sound_effect").forGetter(Properties::soundEffect),
                 Codec.BOOL.optionalFieldOf("notify_sculk", true).forGetter(Properties::notifySculk)
         ).apply(instance, Properties::new));
@@ -132,9 +134,9 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
                 final boolean consumeHeld = buf.readBoolean();
                 final Optional<Ingredient> soilTest = Helpers.OPTIONAL_INGREDIENT_STREAM.decode(buf);
                 final Optional<Ingredient> seedTest = Helpers.OPTIONAL_INGREDIENT_STREAM.decode(buf);
-                final Optional<ItemStack> newSoil = Helpers.OPTIONAL_ITEMSTACK_STREAM.decode(buf);
-                final Optional<ItemStack> newSeed = Helpers.OPTIONAL_ITEMSTACK_STREAM.decode(buf);
-                final Optional<ResourceKey<LootTable>> extraDrops = buf.readOptional(ResourceLocation.STREAM_CODEC).map(rl -> ResourceKey.create(Registries.LOOT_TABLE, rl));
+                final Optional<ItemStackTemplate> newSoil = Helpers.OPTIONAL_ITEMSTACK_TEMPLATE_STREAM.decode(buf);
+                final Optional<ItemStackTemplate> newSeed = Helpers.OPTIONAL_ITEMSTACK_TEMPLATE_STREAM.decode(buf);
+                final Optional<ResourceKey<LootTable>> extraDrops = buf.readOptional(Identifier.STREAM_CODEC).map(rl -> ResourceKey.create(Registries.LOOT_TABLE, rl));
                 final Optional<SoundEffect> soundEffect = SoundEffect.OPTIONAL_STREAM.decode(buf);
                 final boolean notifySculk = buf.readBoolean();
                 return new Properties(ingredient, damageHeld, consumeHeld, soilTest, seedTest, newSoil, newSeed, extraDrops, soundEffect, notifySculk);
@@ -147,9 +149,9 @@ public class BasicPotInteraction extends PotInteraction implements CacheableReci
                 buf.writeBoolean(properties.consumeHeld);
                 Helpers.OPTIONAL_INGREDIENT_STREAM.encode(buf, properties.soilTest);
                 Helpers.OPTIONAL_INGREDIENT_STREAM.encode(buf, properties.seedTest);
-                Helpers.OPTIONAL_ITEMSTACK_STREAM.encode(buf, properties.newSoil);
-                Helpers.OPTIONAL_ITEMSTACK_STREAM.encode(buf, properties.newSeed);
-                buf.writeOptional(properties.extraDrops, (b, v) -> b.writeResourceLocation(v.location()));
+                Helpers.OPTIONAL_ITEMSTACK_TEMPLATE_STREAM.encode(buf, properties.newSoil);
+                Helpers.OPTIONAL_ITEMSTACK_TEMPLATE_STREAM.encode(buf, properties.newSeed);
+                buf.writeOptional(properties.extraDrops, (b, v) -> b.writeIdentifier(v.identifier()));
                 SoundEffect.OPTIONAL_STREAM.encode(buf, properties.soundEffect);
                 buf.writeBoolean(properties.notifySculk);
             }

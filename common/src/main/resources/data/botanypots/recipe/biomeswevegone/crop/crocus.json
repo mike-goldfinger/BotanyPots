@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:crocus",
-  "input": {
-    "item": "biomeswevegone:crocus"
-  }
+  "input": "biomeswevegone:crocus"
 }

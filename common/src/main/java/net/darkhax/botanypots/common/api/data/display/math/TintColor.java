@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 import net.darkhax.bookshelf.common.api.data.codecs.map.MapCodecs;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.util.FastColor;
+import net.minecraft.util.ARGB;
 
 /**
  * Represents the ARGB channels of a color.
@@ -91,7 +91,7 @@ public final class TintColor {
      * @return The integer representation of the color.
      */
     public int pack() {
-        return FastColor.ARGB32.color(this.alpha(), this.red(), this.green(), this.blue());
+        return ARGB.color(this.alpha(), this.red(), this.green(), this.blue());
     }
 
     /**

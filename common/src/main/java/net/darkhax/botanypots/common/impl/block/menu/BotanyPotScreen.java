@@ -1,6 +1,6 @@
 package net.darkhax.botanypots.common.impl.block.menu;
 
-import net.darkhax.bookshelf.common.api.function.SidedReloadableCache;
+import net.darkhax.botanypots.common.api.function.SidedReloadableCache;
 import net.darkhax.botanypots.common.api.context.BlockEntityContext;
 import net.darkhax.botanypots.common.api.data.components.CropOverride;
 import net.darkhax.botanypots.common.api.data.components.SoilOverride;
@@ -13,11 +13,12 @@ import net.darkhax.botanypots.common.api.data.recipes.soil.Soil;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.Helpers;
 import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -30,8 +31,8 @@ import java.util.function.Function;
 
 public class BotanyPotScreen extends AbstractContainerScreen<BotanyPotMenu> {
 
-    private static final ResourceLocation RECIPE_BUTTON_LOCATION = BotanyPotsMod.id("textures/gui/recipe_button.png");
-    private final ResourceLocation backgroundTexture;
+    private static final Identifier RECIPE_BUTTON_LOCATION = BotanyPotsMod.id("textures/gui/recipe_button.png");
+    private final Identifier backgroundTexture;
 
     public BotanyPotScreen(BotanyPotMenu menu, Inventory playerInv, Component name) {
         super(menu, playerInv, name);
@@ -45,14 +46,9 @@ public class BotanyPotScreen extends AbstractContainerScreen<BotanyPotMenu> {
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float delta, int mouseX, int mouseY) {
-        graphics.blit(this.backgroundTexture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-    }
-
-    @Override
-    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float tickDelta) {
-        super.render(graphics, mouseX, mouseY, tickDelta);
-        this.renderTooltip(graphics, mouseX, mouseY);
+    public void extractBackground(@NotNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractBackground(graphics, mouseX, mouseY, delta);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, this.backgroundTexture, this.leftPos, this.topPos, 0f, 0f, this.imageWidth, this.imageHeight, 256, 256);
     }
 
     @NotNull

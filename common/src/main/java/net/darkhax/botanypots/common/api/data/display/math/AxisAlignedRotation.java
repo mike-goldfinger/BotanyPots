@@ -1,7 +1,8 @@
 package net.darkhax.botanypots.common.api.data.display.math;
 
 import com.mojang.serialization.Codec;
-import net.darkhax.bookshelf.common.api.data.codecs.EnumStreamCodec;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.darkhax.bookshelf.common.api.data.codecs.map.MapCodecHelper;
 import net.darkhax.bookshelf.common.api.data.codecs.map.MapCodecs;
 import org.joml.Quaternionf;
@@ -30,7 +31,7 @@ public enum AxisAlignedRotation {
 
     public static final Codec<AxisAlignedRotation> CODEC = MapCodecs.enumerable(AxisAlignedRotation.class);
     public static final MapCodecHelper<AxisAlignedRotation> CODEC_HELPER = new MapCodecHelper<>(CODEC);
-    public static final EnumStreamCodec<AxisAlignedRotation> STREAM = new EnumStreamCodec<>(AxisAlignedRotation.class);
+    public static final StreamCodec<FriendlyByteBuf, AxisAlignedRotation> STREAM = StreamCodec.of(FriendlyByteBuf::writeEnum, buf -> buf.readEnum(AxisAlignedRotation.class));
 
     /**
      * A Quaternion that contains the rotational information. In this case it represents a 0, 90, 180, or 270-degree

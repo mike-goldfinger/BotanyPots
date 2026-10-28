@@ -25,7 +25,7 @@ import net.darkhax.botanypots.common.impl.data.itemdrops.BlockStateDrops;
 import net.darkhax.botanypots.common.impl.data.itemdrops.EntityDrops;
 import net.darkhax.botanypots.common.impl.data.itemdrops.LootTableDrops;
 import net.darkhax.botanypots.common.impl.data.itemdrops.SimpleDropProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.BiConsumer;
@@ -33,7 +33,7 @@ import java.util.function.BiConsumer;
 public class BaseBotanyPotsPlugin implements BotanyPotsPlugin {
 
     @Override
-    public void registerSoilGenerators(BiConsumer<ResourceLocation, SoilGenerator> register) {
+    public void registerSoilGenerators(BiConsumer<Identifier, SoilGenerator> register) {
         register.accept(BotanyPotsMod.id("water"), new TaggedSoilGenerator("botanypots:soil/water", DataHelper.simpleDisplay(Blocks.WATER, true)));
         register.accept(BotanyPotsMod.id("lava"), new TaggedSoilGenerator("botanypots:soil/lava", DataHelper.simpleDisplay(Blocks.LAVA, true)));
         register.accept(BotanyPotsMod.id("snow"), new TaggedSoilGenerator("botanypots:soil/snow", DataHelper.simpleDisplay(Blocks.SNOW_BLOCK)));

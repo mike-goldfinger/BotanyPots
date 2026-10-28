@@ -11,7 +11,7 @@ import net.darkhax.botanypots.common.api.data.display.render.DisplayRenderer;
 import net.darkhax.botanypots.common.api.data.display.types.DisplayType;
 import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -42,7 +42,7 @@ public interface BotanyPotsPlugin {
      *
      * @param register A consumer that will register any accepted soil generator.
      */
-    default void registerSoilGenerators(BiConsumer<ResourceLocation, SoilGenerator> register) {
+    default void registerSoilGenerators(BiConsumer<Identifier, SoilGenerator> register) {
     }
 
     /**
@@ -51,12 +51,12 @@ public interface BotanyPotsPlugin {
      *
      * @param register A consumer that will register any accepted crop generator.
      */
-    default void registerCropGenerators(BiConsumer<ResourceLocation, CropGenerator> register) {
+    default void registerCropGenerators(BiConsumer<Identifier, CropGenerator> register) {
     }
 
     /**
      * Register new display types with Botany Pots. These are registered using
-     * {@link net.darkhax.botanypots.common.api.data.display.types.DisplayType#register(ResourceLocation, MapCodec,
+     * {@link net.darkhax.botanypots.common.api.data.display.types.DisplayType#register(Identifier, MapCodec,
      * StreamCodec)}.
      */
     default void registerDisplayTypes() {
@@ -64,7 +64,7 @@ public interface BotanyPotsPlugin {
 
     /**
      * Register new item drop provider types. These are registered using
-     * {@link net.darkhax.botanypots.common.api.data.itemdrops.ItemDropProviderType#register(ResourceLocation, MapCodec,
+     * {@link net.darkhax.botanypots.common.api.data.itemdrops.ItemDropProviderType#register(Identifier, MapCodec,
      * StreamCodec)}.
      */
     default void registerDropProviders() {
@@ -72,7 +72,7 @@ public interface BotanyPotsPlugin {
 
     /**
      * Registers new growth amount calculation types. These are registered using
-     * {@link net.darkhax.botanypots.common.api.data.growthamount.GrowthAmountType#register(ResourceLocation, MapCodec,
+     * {@link net.darkhax.botanypots.common.api.data.growthamount.GrowthAmountType#register(Identifier, MapCodec,
      * StreamCodec)}.
      */
     default void registerGrowthAmountTypes() {

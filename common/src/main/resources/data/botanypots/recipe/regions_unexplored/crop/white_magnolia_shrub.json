@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:white_magnolia_shrub",
-  "input": {
-    "item": "regions_unexplored:white_magnolia_shrub"
-  }
+  "input": "regions_unexplored:white_magnolia_shrub"
 }

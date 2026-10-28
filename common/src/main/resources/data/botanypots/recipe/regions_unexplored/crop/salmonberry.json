@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:salmonberry_bush",
-  "input": {
-    "item": "regions_unexplored:salmonberry"
-  }
+  "input": "regions_unexplored:salmonberry"
 }

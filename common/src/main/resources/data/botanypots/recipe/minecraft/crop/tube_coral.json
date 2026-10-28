@@ -1,11 +1,13 @@
 {
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:tube_coral",
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
+  "soil": "#botanypots:soil/water",
   "render_options": {
-    "offset": [0, -0.30, 0]
+    "offset": [
+      0,
+      -0.3,
+      0
+    ]
   },
   "drops": [
     {

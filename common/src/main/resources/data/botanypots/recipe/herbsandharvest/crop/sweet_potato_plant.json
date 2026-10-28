@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:sweet_potato_plant",
-  "input": {
-    "item": "herbsandharvest:sweet_potato_plant"
-  }
+  "input": "herbsandharvest:sweet_potato_plant"
 }

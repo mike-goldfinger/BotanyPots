@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:cattail",
-  "input": {
-    "item": "regions_unexplored:cattail"
-  }
+  "input": "regions_unexplored:cattail"
 }

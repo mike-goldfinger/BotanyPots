@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "rootsclassic:flare_orchid",
-  "input": {
-    "item": "rootsclassic:flare_orchid"
-  }
+  "input": "rootsclassic:flare_orchid"
 }

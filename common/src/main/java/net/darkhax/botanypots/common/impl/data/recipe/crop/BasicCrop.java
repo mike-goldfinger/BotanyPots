@@ -19,18 +19,22 @@ import net.darkhax.botanypots.common.impl.Helpers;
 import net.darkhax.botanypots.common.impl.block.BotanyPotBlock;
 import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
 import net.minecraft.ChatFormatting;
-import net.minecraft.advancements.critereon.BlockPredicate;
+import net.minecraft.advancements.criterion.BlockPredicate;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.RegistryOps;
+import net.minecraft.world.item.Item;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -42,12 +46,23 @@ import java.util.function.Consumer;
 
 public class BasicCrop extends Crop implements CacheableRecipe {
 
-    public static final Ingredient DIRT = Ingredient.of(TagKey.create(Registries.ITEM, BotanyPotsMod.id("soil/dirt")));
+    public static final TagKey<Item> DIRT_TAG = TagKey.create(Registries.ITEM, BotanyPotsMod.id("soil/dirt"));
     public static final MapCodec<BasicCrop> CODEC = Properties.CODEC.xmap(BasicCrop::new, BasicCrop::getBasicProperties);
     public static final StreamCodec<RegistryFriendlyByteBuf, BasicCrop> STREAM = Properties.STREAM.map(BasicCrop::new, BasicCrop::getBasicProperties);
     public static final RecipeSerializer<BasicCrop> SERIALIZER = DataHelper.recipeSerializer(CODEC, STREAM);
 
     private final Properties properties;
+
+    /**
+     * Creates the default soil ingredient. The item lookup must be provided by the current registry context, as tag
+     * holder sets are recreated when data is reloaded.
+     *
+     * @param items The item lookup to resolve the tag from.
+     * @return An ingredient for the default dirt soil tag.
+     */
+    public static Ingredient dirt(HolderGetter<Item> items) {
+        return Ingredient.of(items.getOrThrow(DIRT_TAG));
+    }
 
     public BasicCrop(Properties properties) {
         this.properties = properties;
@@ -117,7 +132,7 @@ public class BasicCrop extends Crop implements CacheableRecipe {
 
     @NotNull
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<? extends Recipe<BotanyPotContext>> getSerializer() {
         return SERIALIZER;
     }
 
@@ -174,19 +189,20 @@ public class BasicCrop extends Crop implements CacheableRecipe {
         return this.properties.soil.test(stack);
     }
 
-    public record Properties(Ingredient input, Ingredient soil, int growTime, List<Display> display, int lightLevel, List<ItemDropProvider> drops, Optional<ResourceLocation> functionId, Optional<BlockPredicate> potPredicate, float baseYield, float yieldScale) {
+    public record Properties(Ingredient input, Ingredient soil, int growTime, List<Display> display, int lightLevel, List<ItemDropProvider> drops, Optional<Identifier> functionId, Optional<BlockPredicate> potPredicate, float baseYield, float yieldScale) {
         public static final MapCodec<Properties> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 Ingredient.CODEC.fieldOf("input").forGetter(Properties::input),
-                Ingredient.CODEC.optionalFieldOf("soil", DIRT).forGetter(Properties::soil),
+                Ingredient.CODEC.optionalFieldOf("soil").forGetter(p -> Optional.of(p.soil())),
                 Codec.intRange(1, Integer.MAX_VALUE).optionalFieldOf("grow_time", 1200).forGetter(Properties::growTime),
                 DisplayType.LIST_CODEC.fieldOf("display").forGetter(Properties::display),
                 Codec.intRange(0, 15).optionalFieldOf("light_level", 0).forGetter(Properties::lightLevel),
                 MapCodecs.flexibleList(ItemDropProviderType.DROP_PROVIDER_CODEC).optionalFieldOf("drops", List.of()).forGetter(Properties::drops),
-                ResourceLocation.CODEC.optionalFieldOf("function").forGetter(Properties::functionId),
+                Identifier.CODEC.optionalFieldOf("function").forGetter(Properties::functionId),
                 BlockPredicate.CODEC.optionalFieldOf("pot_predicate").forGetter(Properties::potPredicate),
                 Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield", 1f).forGetter(Properties::baseYield),
-                Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield_scale", 1f).forGetter(Properties::yieldScale)
-        ).apply(instance, Properties::new));
+                Codec.floatRange(0f, Float.MAX_VALUE).optionalFieldOf("yield_scale", 1f).forGetter(Properties::yieldScale),
+                RegistryOps.retrieveGetter(Registries.ITEM)
+        ).apply(instance, (input, soil, growTime, display, lightLevel, drops, functionId, potPredicate, baseYield, yieldScale, items) -> new Properties(input, soil.orElseGet(() -> dirt(items)), growTime, display, lightLevel, drops, functionId, potPredicate, baseYield, yieldScale)));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, Properties> STREAM = new StreamCodec<>() {
             @NotNull
@@ -197,7 +213,7 @@ public class BasicCrop extends Crop implements CacheableRecipe {
                 final int growTime = ByteBufCodecs.INT.decode(buf);
                 final List<Display> display = buf.readList(DisplayType.DISPLAY_STATE_STREAM);
                 final int light = ByteBufCodecs.INT.decode(buf);
-                final Optional<ResourceLocation> functionId = buf.readOptional(ResourceLocation.STREAM_CODEC);
+                final Optional<Identifier> functionId = buf.readOptional(Identifier.STREAM_CODEC);
 
                 final int dropSize = buf.readInt();
                 final List<ItemDropProvider> drops = new LinkedList<>();
@@ -217,7 +233,7 @@ public class BasicCrop extends Crop implements CacheableRecipe {
                 ByteBufCodecs.INT.encode(buf, properties.growTime);
                 buf.writeCollection(properties.display, DisplayType.DISPLAY_STATE_STREAM);
                 ByteBufCodecs.INT.encode(buf, properties.lightLevel);
-                buf.writeOptional(properties.functionId, ResourceLocation.STREAM_CODEC);
+                buf.writeOptional(properties.functionId, Identifier.STREAM_CODEC);
                 buf.writeInt(properties.drops.size());
                 for (ItemDropProvider provider : properties.drops) {
                     ItemDropProviderType.DROP_PROVIDER_STREAM.encode(buf, provider);

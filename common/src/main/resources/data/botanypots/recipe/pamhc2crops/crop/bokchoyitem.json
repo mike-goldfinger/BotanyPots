@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pambokchoycrop",
-  "input": {
-    "item": "pamhc2crops:bokchoyitem"
-  }
+  "input": "pamhc2crops:bokchoyitem"
 }

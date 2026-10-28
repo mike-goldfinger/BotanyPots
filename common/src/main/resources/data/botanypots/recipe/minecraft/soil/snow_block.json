@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:snow_block"
-  },
+  "input": "minecraft:snow_block",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

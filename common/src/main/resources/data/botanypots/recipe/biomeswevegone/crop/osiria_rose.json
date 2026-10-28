@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:osiria_rose",
-  "input": {
-    "item": "biomeswevegone:osiria_rose"
-  }
+  "input": "biomeswevegone:osiria_rose"
 }

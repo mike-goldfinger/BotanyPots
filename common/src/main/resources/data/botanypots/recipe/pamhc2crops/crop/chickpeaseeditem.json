@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamchickpeacrop",
-  "input": {
-    "item": "pamhc2crops:chickpeaseeditem"
-  }
+  "input": "pamhc2crops:chickpeaseeditem"
 }

@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamcassavacrop",
-  "input": {
-    "item": "pamhc2crops:cassavaitem"
-  }
+  "input": "pamhc2crops:cassavaitem"
 }

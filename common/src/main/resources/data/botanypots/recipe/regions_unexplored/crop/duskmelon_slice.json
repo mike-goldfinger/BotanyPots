@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:duskmelon",
-  "input": {
-    "item": "regions_unexplored:duskmelon_slice"
-  }
+  "input": "regions_unexplored:duskmelon_slice"
 }

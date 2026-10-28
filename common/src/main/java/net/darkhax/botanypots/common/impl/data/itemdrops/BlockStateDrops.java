@@ -8,7 +8,7 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.darkhax.botanypots.common.impl.Helpers;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -25,12 +25,12 @@ public class BlockStateDrops extends BlockDrops {
     public static final StreamCodec<RegistryFriendlyByteBuf, BlockStateDrops> STREAM = StreamCodec.of(
             (buf, val) -> {
                 Helpers.BLOCK_STATE_STREAM.encode(buf, val.getHarvestState());
-                buf.writeResourceLocation(val.getTableId());
+                buf.writeIdentifier(val.getTableId());
                 ItemStack.OPTIONAL_LIST_STREAM_CODEC.encode(buf, val.getDisplayItems());
             },
             buf -> {
                 final BlockState state = Helpers.BLOCK_STATE_STREAM.decode(buf);
-                final ResourceLocation tableId = buf.readResourceLocation();
+                final Identifier tableId = buf.readIdentifier();
                 final List<ItemStack> items = ItemStack.OPTIONAL_LIST_STREAM_CODEC.decode(buf);
                 return new BlockStateDrops(state, tableId, items);
             }
@@ -42,7 +42,7 @@ public class BlockStateDrops extends BlockDrops {
     }
 
     // client
-    public BlockStateDrops(BlockState state, ResourceLocation tableId, List<ItemStack> displayItems) {
+    public BlockStateDrops(BlockState state, Identifier tableId, List<ItemStack> displayItems) {
         super(state.getBlock(), state, tableId, displayItems);
     }
 

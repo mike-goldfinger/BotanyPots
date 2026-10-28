@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:clover_patch",
-  "input": {
-    "item": "biomeswevegone:clover_patch"
-  }
+  "input": "biomeswevegone:clover_patch"
 }

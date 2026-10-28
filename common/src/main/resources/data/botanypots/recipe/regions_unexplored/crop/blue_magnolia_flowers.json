@@ -9,9 +9,7 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:blue_magnolia_flowers",
-  "input": {
-    "item": "regions_unexplored:blue_magnolia_flowers"
-  },
+  "input": "regions_unexplored:blue_magnolia_flowers",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

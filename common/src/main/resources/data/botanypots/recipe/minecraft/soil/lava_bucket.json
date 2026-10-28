@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:lava_bucket"
-  },
+  "input": "minecraft:lava_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

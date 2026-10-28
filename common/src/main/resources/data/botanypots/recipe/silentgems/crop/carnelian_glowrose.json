@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgems:carnelian_glowrose",
-  "input": {
-    "item": "silentgems:carnelian_glowrose"
-  }
+  "input": "silentgems:carnelian_glowrose"
 }

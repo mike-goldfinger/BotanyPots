@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "deeperdarker:gloomy_sculk",
-  "soil": {
-    "tag": "botanypots:soil/sculk"
-  },
-  "input": {
-    "item": "deeperdarker:gloomy_sculk"
-  }
+  "soil": "#botanypots:soil/sculk",
+  "input": "deeperdarker:gloomy_sculk"
 }

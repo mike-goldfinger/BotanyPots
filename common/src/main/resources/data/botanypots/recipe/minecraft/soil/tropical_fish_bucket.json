@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:tropical_fish_bucket"
-  },
+  "input": "minecraft:tropical_fish_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

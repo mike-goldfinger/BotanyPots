@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "twilightforest:thorn_rose",
-  "input": {
-    "item": "twilightforest:thorn_rose"
-  }
+  "input": "twilightforest:thorn_rose"
 }

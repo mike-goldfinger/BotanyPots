@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:winter_rose",
-  "input": {
-    "item": "biomeswevegone:winter_rose"
-  }
+  "input": "biomeswevegone:winter_rose"
 }

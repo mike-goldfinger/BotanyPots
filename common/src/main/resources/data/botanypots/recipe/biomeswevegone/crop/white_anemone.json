@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:white_anemone",
-  "input": {
-    "item": "biomeswevegone:white_anemone"
-  }
+  "input": "biomeswevegone:white_anemone"
 }

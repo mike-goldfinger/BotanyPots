@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "creeperoverhaul:tiny_cactus",
-  "input": {
-    "item": "creeperoverhaul:tiny_cactus"
-  },
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  }
+  "input": "creeperoverhaul:tiny_cactus",
+  "soil": "#botanypots:soil/sand"
 }

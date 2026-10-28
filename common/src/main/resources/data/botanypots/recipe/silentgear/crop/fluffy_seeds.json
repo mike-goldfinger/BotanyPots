@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "silentgear:fluffy_plant",
-  "input": {
-    "item": "silentgear:fluffy_seeds"
-  }
+  "input": "silentgear:fluffy_seeds"
 }

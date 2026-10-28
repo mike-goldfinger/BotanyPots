@@ -9,12 +9,8 @@
     "category": "misc",
     "group": "botanypots:waxed_pot",
     "ingredients": [
-        {
-            "item": "minecraft:honeycomb"
-        },
-        {
-            "item": "botanypots:stone_bricks_botany_pot"
-        }
+        "minecraft:honeycomb",
+        "botanypots:stone_bricks_botany_pot"
     ],
     "result": {
         "id": "botanypots:stone_bricks_waxed_botany_pot",

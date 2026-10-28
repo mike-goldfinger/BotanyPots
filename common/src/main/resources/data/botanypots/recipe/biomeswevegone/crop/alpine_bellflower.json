@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:alpine_bellflower",
-  "input": {
-    "item": "biomeswevegone:alpine_bellflower"
-  }
+  "input": "biomeswevegone:alpine_bellflower"
 }

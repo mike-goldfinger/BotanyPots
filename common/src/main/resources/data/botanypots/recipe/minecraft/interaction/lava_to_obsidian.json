@@ -1,11 +1,7 @@
 {
   "type": "botanypots:pot_interaction",
-  "held_item": {
-    "item": "minecraft:water_bucket"
-  },
-  "soil_item": {
-    "item": "minecraft:lava_bucket"
-  },
+  "held_item": "minecraft:water_bucket",
+  "soil_item": "minecraft:lava_bucket",
   "new_soil": {
     "id": "minecraft:obsidian"
   },

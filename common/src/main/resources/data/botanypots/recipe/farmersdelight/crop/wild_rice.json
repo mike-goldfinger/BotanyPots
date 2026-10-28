@@ -9,12 +9,8 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "farmersdelight:wild_rice",
-  "input": {
-    "item": "farmersdelight:wild_rice"
-  },
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
+  "input": "farmersdelight:wild_rice",
+  "soil": "#botanypots:soil/water",
   "drops": [
     {
       "type": "botanypots:loot_table",

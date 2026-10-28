@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:purple_amaranth",
-  "input": {
-    "item": "biomeswevegone:purple_amaranth"
-  }
+  "input": "biomeswevegone:purple_amaranth"
 }

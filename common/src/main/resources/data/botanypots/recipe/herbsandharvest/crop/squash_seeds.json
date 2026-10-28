@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:squash_plant",
-  "input": {
-    "item": "herbsandharvest:squash_seeds"
-  }
+  "input": "herbsandharvest:squash_seeds"
 }

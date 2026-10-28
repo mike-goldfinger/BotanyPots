@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamelderberrycrop",
-  "input": {
-    "item": "pamhc2crops:elderberryitem"
-  }
+  "input": "pamhc2crops:elderberryitem"
 }

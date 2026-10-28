@@ -1,0 +1,79 @@
+{
+  "mod": {
+    "name": "BotanyPots",
+    "group": "net.darkhax.botanypots",
+    "authors": [
+      "Darkhax"
+    ],
+    "id": "botanypots",
+    "license": "LGPL v2.1",
+    "description": "Pots for growing different types of plants.",
+    "repo": "https://github.com/mike-goldfinger/BotanyPots",
+    "client": false
+  },
+  "curseforge": {
+    "slug": "botany-pots",
+    "id": "353928"
+  },
+  "modrinth": {
+    "slug": "botany-pots",
+    "id": "U6BUTZ7K"
+  },
+  "dependencies": [
+    {
+      "name": "Bookshelf",
+      "type": "required",
+      "mod_id": {
+        "id": "bookshelf"
+      },
+      "maven": {
+        "common": "net.darkhax.bookshelf:bookshelf-common-26.1.2:26.1.2.15",
+        "neoforge": "net.darkhax.bookshelf:bookshelf-neoforge-26.1.2:26.1.2.15",
+        "fabric": "net.darkhax.bookshelf:bookshelf-fabric-26.1.2:26.1.2.15"
+      },
+      "curseforge": {
+        "slug": "bookshelf",
+        "id": "228525"
+      },
+      "modrinth": {
+        "slug": "bookshelf-lib",
+        "id": "uy4Cnpcm"
+      }
+    },
+    {
+      "name": "Prickle",
+      "type": "required",
+      "mod_id": {
+        "id": "prickle"
+      },
+      "maven": {
+        "common": "net.darkhax.pricklemc:prickle-common-26.1.2:26.1.2.6",
+        "neoforge": "net.darkhax.pricklemc:prickle-neoforge-26.1.2:26.1.2.6",
+        "fabric": "net.darkhax.pricklemc:prickle-fabric-26.1.2:26.1.2.6"
+      },
+      "curseforge": {
+        "slug": "prickle"
+      },
+      "modrinth": {
+        "slug": "prickle",
+        "id": "aaRl8GiW"
+      }
+    },
+    {
+      "name": "JEI",
+      "type": "misc",
+      "maven": {
+        "common": "mezz.jei:jei-26.1.2-common-api:29.6.2.31",
+        "neoforge": "mezz.jei:jei-26.1.2-neoforge:29.6.2.31",
+        "fabric": "mezz.jei:jei-26.1.2-fabric:29.6.2.31"
+      }
+    },
+    {
+      "name": "Fabric API",
+      "type": "misc",
+      "maven": {
+        "fabric": "net.fabricmc.fabric-api:fabric-api:0.155.2+26.1.2"
+      }
+    }
+  ]
+}

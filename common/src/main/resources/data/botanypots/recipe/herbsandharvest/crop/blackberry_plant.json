@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:blackberry_plant",
-  "input": {
-    "item": "herbsandharvest:blackberry_plant"
-  }
+  "input": "herbsandharvest:blackberry_plant"
 }

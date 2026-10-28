@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "regions_unexplored:brimsprout",
-  "input": {
-    "item": "regions_unexplored:brimsprout"
-  }
+  "input": "regions_unexplored:brimsprout"
 }

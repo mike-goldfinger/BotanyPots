@@ -9,12 +9,8 @@
     "category": "misc",
     "group": "botanypots:hopper_pot",
     "ingredients": [
-        {
-            "item": "minecraft:hopper"
-        },
-        {
-            "item": "botanypots:mossy_stone_bricks_botany_pot"
-        }
+        "minecraft:hopper",
+        "botanypots:mossy_stone_bricks_botany_pot"
     ],
     "result": {
         "id": "botanypots:mossy_stone_bricks_hopper_botany_pot",

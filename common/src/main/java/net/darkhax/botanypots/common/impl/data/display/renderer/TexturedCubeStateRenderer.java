@@ -7,15 +7,16 @@ import net.darkhax.botanypots.common.api.data.display.render.AbstractDisplayRend
 import net.darkhax.botanypots.common.api.data.display.types.RenderOptions;
 import net.darkhax.botanypots.common.impl.block.entity.BotanyPotBlockEntity;
 import net.darkhax.botanypots.common.impl.data.display.types.TexturedCubeDisplayState;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
 public final class TexturedCubeStateRenderer extends AbstractDisplayRenderer<TexturedCubeDisplayState, RenderOptions> {
 
-    private static final int[] WHITE = {255, 255, 255, 255};
     public static final TexturedCubeStateRenderer RENDERER = new TexturedCubeStateRenderer();
 
     @Override
@@ -24,7 +25,9 @@ public final class TexturedCubeStateRenderer extends AbstractDisplayRenderer<Tex
     }
 
     @Override
-    public void render(BlockEntityRendererProvider.Context context, TexturedCubeDisplayState display, RenderOptions renderOptions, PoseStack pose, Level level, BlockPos pos, float tickDelta, MultiBufferSource bufferSource, int light, int overlay, BotanyPotBlockEntity pot, float progress, float growthScale, float heightOffset) {
-        IRenderHelper.GET.renderBox(bufferSource.getBuffer(RenderType.translucent()), pose, IRenderHelper.GET.blockSprite(display.getTexture()), light, overlay, display.renderOptions().getColor().orElse(TintColor.WHITE).asArray());
+    public void render(BlockEntityRendererProvider.Context context, TexturedCubeDisplayState display, RenderOptions renderOptions, PoseStack pose, Level level, BlockPos pos, float tickDelta, SubmitNodeCollector collector, CameraRenderState camera, int light, int overlay, BotanyPotBlockEntity pot, float progress, float growthScale, float heightOffset) {
+        final TextureAtlasSprite sprite = IRenderHelper.GET.blockSprite(display.getTexture());
+        final int[] color = display.renderOptions().getColor().orElse(TintColor.WHITE).asArray();
+        collector.submitCustomGeometry(pose, Sheets.translucentBlockSheet(), (renderPose, consumer) -> IRenderHelper.GET.renderBox(consumer, renderPose.pose(), sprite, light, overlay, 0f, 1f, 0f, 1f, 0f, 1f, color));
     }
 }

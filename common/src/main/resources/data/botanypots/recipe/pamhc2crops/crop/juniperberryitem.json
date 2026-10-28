@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamjuniperberrycrop",
-  "input": {
-    "item": "pamhc2crops:juniperberryitem"
-  }
+  "input": "pamhc2crops:juniperberryitem"
 }

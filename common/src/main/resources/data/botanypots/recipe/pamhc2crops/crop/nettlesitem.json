@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamnettlescrop",
-  "input": {
-    "item": "pamhc2crops:nettlesitem"
-  }
+  "input": "pamhc2crops:nettlesitem"
 }

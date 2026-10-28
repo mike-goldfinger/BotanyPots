@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:blueberry_bush",
-  "input": {
-    "item": "biomeswevegone:blueberries"
-  }
+  "input": "biomeswevegone:blueberries"
 }

@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "cataclysm:the_baby_leviathan_bucket"
-  },
+  "input": "cataclysm:the_baby_leviathan_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

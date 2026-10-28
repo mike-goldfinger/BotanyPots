@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "deeperdarker:lily_flower",
-  "input": {
-    "item": "deeperdarker:lily_flower"
-  },
-  "soil": {
-    "tag": "botanypots:soil/water"
-  }
+  "input": "deeperdarker:lily_flower",
+  "soil": "#botanypots:soil/water"
 }

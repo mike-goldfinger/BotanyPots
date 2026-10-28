@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "pamhc2crops:pamsoybeancrop",
-  "input": {
-    "item": "pamhc2crops:soybeanseeditem"
-  }
+  "input": "pamhc2crops:soybeanseeditem"
 }

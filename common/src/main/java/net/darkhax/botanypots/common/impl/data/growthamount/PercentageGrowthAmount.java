@@ -10,7 +10,7 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 
 public record PercentageGrowthAmount(float percentage) implements GrowthAmount {
 
-    public static final ResourceLocation ID = BotanyPotsMod.id("percent");
+    public static final Identifier ID = BotanyPotsMod.id("percent");
     public static final Supplier<GrowthAmountType<?>> TYPE = GrowthAmountType.getLazy(ID);
     public static final MapCodec<PercentageGrowthAmount> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(Codec.floatRange(0f, 1f).fieldOf("amount").forGetter(PercentageGrowthAmount::percentage)).apply(instance, PercentageGrowthAmount::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, PercentageGrowthAmount> STREAM = StreamCodec.composite(ByteBufCodecs.FLOAT, PercentageGrowthAmount::percentage, PercentageGrowthAmount::new);

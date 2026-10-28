@@ -2,15 +2,11 @@
   "type": "botanypots:block_derived_crop",
   "block": "minecraft:wither_rose",
   "soil": {
-    "type": "bookshelf:either",
+    "neoforge:ingredient_type": "bookshelf:either",
     "fabric:type": "bookshelf:either",
     "ingredients": [
-      {
-        "tag": "botanypots:soil/dirt"
-      },
-      {
-        "tag": "botanypots:soil/soul_sand"
-      }
+      "#botanypots:soil/dirt",
+      "#botanypots:soil/soul_sand"
     ]
   }
 }

@@ -9,10 +9,6 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "chipped:micro_lily_pads",
-  "soil": {
-    "tag": "botanypots:soil/water"
-  },
-  "input": {
-    "item": "chipped:micro_lily_pads"
-  }
+  "soil": "#botanypots:soil/water",
+  "input": "chipped:micro_lily_pads"
 }

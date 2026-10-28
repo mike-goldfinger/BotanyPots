@@ -14,6 +14,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
@@ -42,7 +43,7 @@ public class MissingSoilGenerator implements SoilGenerator {
                     if (soilTest != null && !soilTest.isEmpty() && soilTest.test(stack)) {
                         return true;
                     }
-                    final ItemStack output = basic.properties.newSoil().orElse(ItemStack.EMPTY);
+                    final ItemStack output = basic.properties.newSoil().map(ItemStackTemplate::create).orElse(ItemStack.EMPTY);
                     if (!output.isEmpty() && ItemStack.isSameItemSameComponents(stack, output)) {
                         return true;
                     }

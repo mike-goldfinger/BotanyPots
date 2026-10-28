@@ -9,12 +9,8 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:tall_beach_grass",
-  "input": {
-    "item": "biomeswevegone:tall_beach_grass"
-  },
-  "soil": {
-    "tag": "botanypots:soil/sand"
-  },
+  "input": "biomeswevegone:tall_beach_grass",
+  "soil": "#botanypots:soil/sand",
   "drops": [
     {
       "type": "botanypots:loot_table",

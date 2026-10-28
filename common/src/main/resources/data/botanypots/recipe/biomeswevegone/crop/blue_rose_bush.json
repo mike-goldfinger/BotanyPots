@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "biomeswevegone:blue_rose_bush",
-  "input": {
-    "item": "biomeswevegone:blue_rose_bush"
-  }
+  "input": "biomeswevegone:blue_rose_bush"
 }

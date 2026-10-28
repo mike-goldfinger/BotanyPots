@@ -8,9 +8,7 @@
     }
   ],
   "type": "botanypots:soil",
-  "input": {
-    "item": "minecraft:pufferfish_bucket"
-  },
+  "input": "minecraft:pufferfish_bucket",
   "display": {
     "type": "botanypots:simple",
     "block_state": {

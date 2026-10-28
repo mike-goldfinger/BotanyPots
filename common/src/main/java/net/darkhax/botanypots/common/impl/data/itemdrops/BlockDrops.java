@@ -1,5 +1,7 @@
 package net.darkhax.botanypots.common.impl.data.itemdrops;
 
+import net.darkhax.botanypots.common.impl.Helpers;
+import net.minecraft.resources.ResourceKey;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.darkhax.bookshelf.common.api.function.CachedSupplier;
@@ -10,7 +12,7 @@ import net.darkhax.botanypots.common.impl.BotanyPotsMod;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -33,13 +35,13 @@ public class BlockDrops extends LootTableDrops {
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BlockDrops> STREAM = StreamCodec.of(
             (buf, val) -> {
-                buf.writeResourceLocation(BuiltInRegistries.BLOCK.getKey(val.getBlock()));
-                buf.writeResourceLocation(val.getTableId());
+                buf.writeIdentifier(BuiltInRegistries.BLOCK.getKey(val.getBlock()));
+                buf.writeIdentifier(val.getTableId());
                 ItemStack.OPTIONAL_LIST_STREAM_CODEC.encode(buf, val.getDisplayItems());
             },
             buf -> {
-                final Block block = BuiltInRegistries.BLOCK.get(buf.readResourceLocation());
-                final ResourceLocation tableId = buf.readResourceLocation();
+                final Block block = BuiltInRegistries.BLOCK.getValue(buf.readIdentifier());
+                final Identifier tableId = buf.readIdentifier();
                 final List<ItemStack> items = ItemStack.OPTIONAL_LIST_STREAM_CODEC.decode(buf);
                 return new BlockDrops(block, tableId, items);
             }
@@ -56,18 +58,18 @@ public class BlockDrops extends LootTableDrops {
 
     // server
     public BlockDrops(Block block, BlockState harvestState) {
-        super(block.getLootTable().location());
+        super(block.getLootTable().map(ResourceKey::identifier).orElse(Helpers.EMPTY_LOOT_TABLE.identifier()));
         this.block = block;
         this.harvestState = harvestState;
     }
 
     // client
-    public BlockDrops(Block block, ResourceLocation tableId, List<ItemStack> display) {
+    public BlockDrops(Block block, Identifier tableId, List<ItemStack> display) {
         this(block, block.defaultBlockState(), tableId, display);
     }
 
     // client
-    public BlockDrops(Block block, BlockState harvestState, ResourceLocation tableId, List<ItemStack> display) {
+    public BlockDrops(Block block, BlockState harvestState, Identifier tableId, List<ItemStack> display) {
         super(tableId, display);
         this.block = block;
         this.harvestState = harvestState;

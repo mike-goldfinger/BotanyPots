@@ -9,7 +9,5 @@
   ],
   "type": "botanypots:block_derived_crop",
   "block": "herbsandharvest:rice_plant",
-  "input": {
-    "item": "herbsandharvest:rice_plant"
-  }
+  "input": "herbsandharvest:rice_plant"
 }
