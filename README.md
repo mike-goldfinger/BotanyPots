@@ -76,11 +76,11 @@ repositories {
 
 dependencies {
      // NeoForge
-     implementation group: 'net.darkhax.botanypots', name: 'botanypots-neoforge-26.1.2', version: '26.1.2.2'
+     implementation group: 'net.darkhax.botanypots', name: 'botanypots-neoforge-26.1.2', version: '26.1.2.3'
      // Fabric
-     implementation group: 'net.darkhax.botanypots', name: 'botanypots-fabric-26.1.2', version: '26.1.2.2'
+     implementation group: 'net.darkhax.botanypots', name: 'botanypots-fabric-26.1.2', version: '26.1.2.3'
      // Common / MultiLoader / Vanilla / No Loader
-     implementation group: 'net.darkhax.botanypots', name: 'botanypots-common-26.1.2', version: '26.1.2.2'
+     implementation group: 'net.darkhax.botanypots', name: 'botanypots-common-26.1.2', version: '26.1.2.3'
 }
 ```
 

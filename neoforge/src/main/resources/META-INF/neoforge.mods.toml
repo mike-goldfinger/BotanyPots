@@ -4,7 +4,7 @@ issueTrackerURL = "https://github.com/mike-goldfinger/BotanyPots/issues"
 
 [[mods]]
 modId = "botanypots"
-version = "26.1.2.2"
+version = "26.1.2.3"
 displayName = "BotanyPots"
 updateJSONURL = "https://updates.blamejared.com/get?n=botanypots&gv=26.1.2&ml=neoforge"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/botany-pots"

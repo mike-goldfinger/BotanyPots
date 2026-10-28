@@ -43,7 +43,9 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.util.Unit;
@@ -111,7 +113,8 @@ public class BotanyPotsContent implements ContentProvider {
 
     private void definePot(BlockRegistryAdapter registry, String id, MapColor color, PotType type) {
         final Identifier blockId = Identifier.fromNamespaceAndPath(this.namespace(), id);
-        allPotBlocks.put(blockId, registry.addPlaceable(id, properties -> new BotanyPotBlock(properties, type), properties -> BotanyPotBlock.properties(properties, color)).value());
+        // The item must use the block description prefix, otherwise it is named item.botanypots.<id> since 1.21.2.
+        allPotBlocks.put(blockId, registry.add(id, properties -> new BotanyPotBlock(properties, type), properties -> BotanyPotBlock.properties(properties, color), (items, key, block) -> items.add(key.identifier().getPath(), itemProps -> new BlockItem(block, itemProps), Item.Properties::useBlockDescriptionPrefix)).value());
     }
 
     @Override
