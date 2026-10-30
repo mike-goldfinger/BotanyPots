@@ -1,0 +1,39 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:armadillo_crop"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "mysticalagriculture:armadillo_crop",
+  "drops": [
+    {
+      "type": "botanypots:items",
+      "items": [
+        {
+          "result": {
+            "id": "mysticalagriculture:armadillo_essence",
+            "count": 1
+          }
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:armadillo_seeds",
+            "count": 1
+          },
+          "chance": 0.1
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:fertilized_essence",
+            "count": 1
+          },
+          "chance": 0.1
+        }
+      ]
+    }
+  ]
+}

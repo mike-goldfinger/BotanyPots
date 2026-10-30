@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "Mystical Agriculture crops in Botany Pots: essence drops and Essence Farmland soils (data from the mod's getDrops logic)",
+    "min_format": 101,
+    "max_format": 101
+  }
+}

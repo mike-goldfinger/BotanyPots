@@ -1,0 +1,39 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:limestone_crop"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "mysticalagriculture:limestone_crop",
+  "drops": [
+    {
+      "type": "botanypots:items",
+      "items": [
+        {
+          "result": {
+            "id": "mysticalagriculture:limestone_essence",
+            "count": 1
+          }
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:limestone_seeds",
+            "count": 1
+          },
+          "chance": 0.1
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:fertilized_essence",
+            "count": 1
+          },
+          "chance": 0.1
+        }
+      ]
+    }
+  ]
+}

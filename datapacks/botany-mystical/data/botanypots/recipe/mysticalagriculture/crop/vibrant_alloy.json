@@ -1,0 +1,39 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:vibrant_alloy_crop"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "mysticalagriculture:vibrant_alloy_crop",
+  "drops": [
+    {
+      "type": "botanypots:items",
+      "items": [
+        {
+          "result": {
+            "id": "mysticalagriculture:vibrant_alloy_essence",
+            "count": 1
+          }
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:vibrant_alloy_seeds",
+            "count": 1
+          },
+          "chance": 0.1
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:fertilized_essence",
+            "count": 1
+          },
+          "chance": 0.1
+        }
+      ]
+    }
+  ]
+}

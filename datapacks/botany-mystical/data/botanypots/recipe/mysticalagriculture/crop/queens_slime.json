@@ -1,0 +1,39 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:queens_slime_crop"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "mysticalagriculture:queens_slime_crop",
+  "drops": [
+    {
+      "type": "botanypots:items",
+      "items": [
+        {
+          "result": {
+            "id": "mysticalagriculture:queens_slime_essence",
+            "count": 1
+          }
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:queens_slime_seeds",
+            "count": 1
+          },
+          "chance": 0.1
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:fertilized_essence",
+            "count": 1
+          },
+          "chance": 0.1
+        }
+      ]
+    }
+  ]
+}

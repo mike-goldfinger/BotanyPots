@@ -1,0 +1,39 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:draconium_crop"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "mysticalagriculture:draconium_crop",
+  "drops": [
+    {
+      "type": "botanypots:items",
+      "items": [
+        {
+          "result": {
+            "id": "mysticalagriculture:draconium_essence",
+            "count": 1
+          }
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:draconium_seeds",
+            "count": 1
+          },
+          "chance": 0.1
+        },
+        {
+          "result": {
+            "id": "mysticalagriculture:fertilized_essence",
+            "count": 1
+          },
+          "chance": 0.1
+        }
+      ]
+    }
+  ]
+}

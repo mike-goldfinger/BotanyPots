@@ -51,6 +51,12 @@ Trees are not part of Botany Pots itself but of the add-on [Botany Trees](https:
 which has no 26.1 release. Because the recipe format is unchanged, its data works as a plain data pack with this port:
 see [`datapacks/botany-trees`](datapacks/botany-trees) (vanilla trees incl. pale oak, drop into `<world>/datapacks`, `/reload`).
 
+## Mystical Agriculture
+
+Mystical Agriculture crops have no loot tables (their drops are computed in code), so in a Botany Pot they would only return
+a seed. [`datapacks/botany-mystical`](datapacks/botany-mystical) adds explicit essence/seed drops for all 136 crops and
+registers the Essence Farmlands as soils with per-tier growth and yield bonuses.
+
 ## Status
 
 Ready-built jars are on the [Releases page](https://github.com/mike-goldfinger/BotanyPots/releases).

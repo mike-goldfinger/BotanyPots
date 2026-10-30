@@ -1,0 +1,14 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:awakened_supremium_farmland"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_soil",
+  "block": "mysticalagriculture:awakened_supremium_farmland",
+  "growth_modifier": 0.4,
+  "yield_modifier": 2.5
+}
