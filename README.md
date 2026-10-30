@@ -45,6 +45,12 @@ of this file on every build.
 - `ItemStack` values in data (`new_soil`, `new_seed`, simple drop `result`) are parsed as `ItemStackTemplate`.
 - The CraftTweaker and Simple Loot Viewer integrations were dropped because those mods are not available for 26.1.
 
+## Growing trees
+
+Trees are not part of Botany Pots itself but of the add-on [Botany Trees](https://github.com/Darkhax-Minecraft/BotanyTrees),
+which has no 26.1 release. Because the recipe format is unchanged, its data works as a plain data pack with this port:
+see [`datapacks/botany-trees`](datapacks/botany-trees) (vanilla trees incl. pale oak, drop into `<world>/datapacks`, `/reload`).
+
 ## Status
 
 Compiles for both loaders, and dedicated servers on NeoForge and Fabric load all 1890 recipes without data errors.

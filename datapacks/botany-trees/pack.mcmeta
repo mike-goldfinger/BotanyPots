@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "Botany Trees – grow vanilla trees in Botany Pots (data from Darkhax/BotanyTrees 1.21.1, LGPL-2.1)",
+    "min_format": 101,
+    "max_format": 101
+  }
+}
