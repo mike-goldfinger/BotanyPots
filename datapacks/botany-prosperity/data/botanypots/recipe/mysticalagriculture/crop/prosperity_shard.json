@@ -1,0 +1,27 @@
+{
+  "bookshelf:load_conditions": [
+    {
+      "type": "bookshelf:block_exists",
+      "values": [
+        "mysticalagriculture:prosperity_block"
+      ]
+    }
+  ],
+  "type": "botanypots:block_derived_crop",
+  "block": "mysticalagriculture:prosperity_block",
+  "input": "mysticalagriculture:prosperity_seed_base",
+  "grow_time": 2400,
+  "drops": [
+    {
+      "type": "botanypots:items",
+      "items": [
+        {
+          "result": {
+            "id": "mysticalagriculture:prosperity_shard",
+            "count": 1
+          }
+        }
+      ]
+    }
+  ]
+}

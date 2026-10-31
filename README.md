@@ -57,6 +57,9 @@ Mystical Agriculture crops have no loot tables (their drops are computed in code
 a seed. [`datapacks/botany-mystical`](datapacks/botany-mystical) adds explicit essence/seed drops for all 136 crops and
 registers the Essence Farmlands as soils with per-tier growth and yield bonuses.
 
+[`datapacks/botany-prosperity`](datapacks/botany-prosperity) makes Prosperity Shards renewable: a Prosperity Seed Base grows in the
+pot and drops one shard every two minutes, for Skyblock worlds without Prosperity Ore.
+
 ## Status
 
 Ready-built jars are on the [Releases page](https://github.com/mike-goldfinger/BotanyPots/releases).
